@@ -1,0 +1,442 @@
+
+<!-- saved from url=(0049)http://onlinestatbook.com/2/regression/intro.html -->
+<html><!-- #BeginTemplate "/Templates/section template.dwt" --><!-- DW6 --><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<!-- #BeginEditable "doctitle" -->
+<title>Introduction to Linear Regression  </title>
+<!-- #EndEditable -->
+
+<link rel="stylesheet" href="./linear_regression_files/mmstat.css" type="text/css">
+<script language="JavaScript" src="./linear_regression_files/stat.js.download"></script>
+<script language="JavaScript" src="./linear_regression_files/question.js.download"></script>
+<script language="JavaScript" src="./linear_regression_files/nav.js.download"></script>
+<script language="JavaScript">
+  var leftNav=false
+  var chapterIndex
+  var sectionIndex
+  
+</script>
+</head>
+
+<body class="back" onload="loaded()" bgcolor="#FFFFFF">
+<form name="form1" onsubmit="return checkAnswers()">
+  <!-- #BeginEditable "settings" -->
+  <input name="chapter" id="chapter_name" type="hidden" value="Regression">
+  <input name="section" id="section_name" type="hidden" value="Introduction to Linear Regression">
+  <input type="hidden" name="mode" id="mode" value="s">
+  <input name="questions" id="questions" type="hidden" value="intro.xml">
+  <!-- #EndEditable -->
+
+<table class="mainTable" cellspacing="0" align="center" id="mainTable">
+
+
+
+  <tbody><tr> 
+    <td> 
+        <table class="main" cellspacing="0" cellpadding="16" align="center" id="main">
+        <script language="javascript">tableWidth()</script>
+          <tbody><tr>        
+              <td valign="top">
+				<script language="JavaScript">            
+                  insertNavLeft()            
+                </script></td><td valign="top" class="prelim"><div id="contents" class="firstp" style="background-color: white;"><a href="http://onlinestatbook.com/2/index.html">Home</a><br><br><ol class="upper_roman notop0"><li><a href="javascript:displayContents(1)">Introduction</a></li><li><a href="javascript:displayContents(2)">Graphing Distributions</a></li><li><a href="javascript:displayContents(3)">Summarizing Distributions</a></li><li><a href="javascript:displayContents(4)">Describing Bivariate Data</a></li><li><a href="javascript:displayContents(5)">Probability</a></li><li><a href="javascript:displayContents(6)">Research Design</a></li><li><a href="javascript:displayContents(7)">Normal Distribution</a></li><li><a href="javascript:displayContents(8)">Advanced Graphs</a></li><li><a href="javascript:displayContents(9)">Sampling Distributions</a></li><li><a href="javascript:displayContents(10)">Estimation</a></li><li><a href="javascript:displayContents(11)">Logic of Hypothesis Testing</a></li><li><a href="javascript:displayContents(12)">Tests of Means</a></li><li><a href="javascript:displayContents(13)">Power</a></li><br><li>Regression</li><ol class="notop0"><li class="section_list">Contents<a href="http://onlinestatbook.com/2/regression/regression.html"><br>Standard</a> </li><li class="red section_list">Introduction to Linear Regression<br>Standard&nbsp;&nbsp;</li><li class="section_list">Linear Fit Demo<a href="http://onlinestatbook.com/2/regression/linear_fit_demo.html"><br>Standard</a> </li><li class="section_list">Partitioning Sums of Squares<a href="http://onlinestatbook.com/2/regression/partitioning.html"><br>Standard</a>&nbsp;&nbsp;<a href="http://onlinestatbook.com/2/regression/partitioningM.html"> Video</a> </li><li class="section_list">Standard Error of the Estimate<a href="http://onlinestatbook.com/2/regression/accuracy.html"><br>Standard</a>&nbsp;&nbsp;<a href="http://onlinestatbook.com/2/regression/accuracyM.html"> Video</a> </li><li class="section_list">Inferential Statistics for b and r<a href="http://onlinestatbook.com/2/regression/inferential.html"><br>Standard</a>&nbsp;&nbsp;<a href="http://onlinestatbook.com/2/regression/inferentialM.html"> Video</a> </li><li class="section_list">Influential Observations<a href="http://onlinestatbook.com/2/regression/influential.html"><br>Standard</a>&nbsp;&nbsp;<a href="http://onlinestatbook.com/2/regression/influentialM.html"> Video</a> </li><li class="section_list">Regression Toward the Mean<a href="http://onlinestatbook.com/2/regression/regression_toward_mean.html"><br>Standard</a>&nbsp;&nbsp;<a href="http://onlinestatbook.com/2/regression/regression_toward_meanM.html"> Video</a> </li><li class="section_list">Introduction to Multiple Regression<a href="http://onlinestatbook.com/2/regression/multiple_regression.html"><br>Standard</a>&nbsp;&nbsp;<a href="http://onlinestatbook.com/2/regression/multiple_regressionM.html"> Video</a> </li><li class="section_list">Statistical Literacy<a href="http://onlinestatbook.com/2/regression/regressionSA.html"><br>Standard</a> </li><li class="section_list">Exercises<a href="http://onlinestatbook.com/2/regression/regression_exercises.html"><br>Standard</a> </li><br></ol><li><a href="javascript:displayContents(15)">Analysis of Variance</a></li><li><a href="javascript:displayContents(16)">Transformations</a></li><li><a href="javascript:displayContents(17)">Chi Square</a></li><li><a href="javascript:displayContents(18)">Distribution Free Tests</a></li><li><a href="javascript:displayContents(19)">Effect Size</a></li><li><a href="javascript:displayContents(20)">Case Studies</a></li><li><a href="javascript:displayContents(21)">Calculators</a></li><li><a href="javascript:displayContents(22)">Glossary</a></li></ol></div></td><td class="stripe">&nbsp;</td> 
+               
+          
+          
+		  <td valign="top"> 
+          		<div id="navTop">Chapter: <select id="chapter" onchange="chapterIndex = this.selectedIndex;changeChapter()" class="nav"><option>Front</option><option>1. Introduction</option><option>2. Graphing Distributions</option><option>3. Summarizing Distributions</option><option>4. Describing Bivariate Data</option><option>5. Probability</option><option>6. Research Design</option><option>7. Normal Distribution</option><option>8. Advanced Graphs</option><option>9. Sampling Distributions</option><option>10. Estimation</option><option>11. Logic of Hypothesis Testing</option><option>12. Tests of Means</option><option>13. Power</option><option selected="">14. Regression</option><option>15. Analysis of Variance</option><option>16. Transformations</option><option>17. Chi Square</option><option>18. Distribution Free Tests</option><option>19. Effect Size</option><option>20. Case Studies</option><option>21. Calculators</option><option>22. Glossary</option></select> &nbsp;Section: <select id="section" onchange="sectionIndex = this.selectedIndex;changeSection()" class="nav"><option>Contents</option><option selected="">Introduction to Linear Regression</option><option>Linear Fit Demo</option><option>Partitioning Sums of Squares</option><option>Standard Error of the Estimate</option><option>Inferential Statistics for b and r</option><option>Influential Observations</option><option>Regression Toward the Mean</option><option>Introduction to Multiple Regression</option><option>Statistical Literacy</option><option>Exercises</option></select><br><p><a href="http://onlinestatbook.com/2/index.html">Home</a> |  <a href="javaScript:goPrev()">Previous Section</a> &nbsp;|&nbsp; <a href="javaScript:goNext()">Next Section</a></p><a href="http://onlinestatbook.com/2/regression/introM.html">Video</a><br><br></div>
+          		
+                
+                
+         
+ 			<!-- #BeginEditable "title" --> 
+              <p class="sectiontitle">Introduction to Linear Regression</p>
+              <!-- #EndEditable --> 
+            <p class="author"> Author(s)</p>
+            <!-- #BeginEditable "author" -->
+            
+            David M. Lane
+            
+            <br><br>
+            <!--
+                        <div class="div1"><a href="http://chggtrx.com/click.track?CID=286409&AFID=423205&ADID=1873486&SID=">Get great tutoring at an affordable price with Chegg.</a> Subscribe today and get your 1st 30 minutes Free!</div>
+
+            
+            
+            <br>
+            -->
+            <!-- #EndEditable -->
+            
+            
+<p class="prerequisite">Prerequisites</p>
+                <!-- #BeginEditable "prerequisites" --><a href="http://onlinestatbook.com/2/summarizing_distributions/variability.html">Measures
+                of Variability</a>,
+                <a href="http://onlinestatbook.com/2/describing_bivariate_data/bivariate.html">Describing Bivariate Data</a> <br><br>
+			  <span class="prerequisitetitle">Learning Objectives</span><ol class="notop">
+      <li>Define linear regression</li>
+  
+    
+      <li>Identify errors of prediction in a scatter plot with a regression line</li>
+</ol><!-- #EndEditable -->
+              
+			  
+
+             <!-- #BeginEditable "content" -->
+             <p class="firstp"> In simple linear regression, we predict
+               scores on one variable from the scores on a second variable.
+                The variable we are predicting is called the <span class="term">criterion
+                variable</span>               and is  referred to 
+                as Y. The variable we are basing our predictions on is called
+                the <span class="term">predictor variable</span> and is 
+                referred to as X. When there is only one predictor variable,
+                the prediction method is called <span class="term">simple regression</span>.
+                In simple linear regression, the topic of this section, the predictions
+                of Y when plotted as a function of X form a straight line.</p>
+             <p class="para">The
+                  example data in Table 1 are plotted in Figure 1. You can see
+                  that there is a positive relationship between X and Y. If you
+                  were going to predict Y from X, the higher the value of X,
+               the higher  your prediction of Y. </p>
+             <div class="tableHolder200">
+               <p class="tableTitle">Table 1. Example data.</p>
+               <table class="dataTable2 centered">
+               <tbody><tr>
+               		<th>
+               			X
+               		</th>
+               		<th>
+               			Y
+               		</th>
+               	</tr>
+                <tr>
+               		<td>
+               			1.00
+               		</td>
+               		<td>
+               			1.00
+               		</td>
+               	</tr>
+                <tr>
+               		<td>
+               			2.00
+               		</td>
+               		<td>
+               			2.00
+               		</td>
+               	</tr>
+                <tr>
+               		<td>
+               			3.00
+               		</td>
+               		<td>
+               			1.30
+               		</td>
+               	</tr>
+                <tr>
+               		<td>
+               			4.00
+               		</td>
+               		<td>
+               			3.75
+               		</td>
+               	</tr>
+                <tr>
+               		<td>
+               			5.00
+               		</td>
+               		<td>
+               			2.25
+               		</td>
+               	</tr>
+              </tbody></table>
+              </div>
+             <div class="figureHolder" style="width:375">
+       	       <img src="./linear_regression_files/points_only.gif" width="355" height="400">
+             <p class="tableTitle">Figure 1. A scatter plot of the example
+                     data.</p>
+             </div>
+             <p class="para">Linear regression consists of finding the best-fitting
+               straight line through the points. The best-fitting line is called
+               a <span class="term">regression line</span>. The black diagonal
+               line in Figure 2 is the regression line and consists of the predicted
+               score on Y for each possible value of X. The vertical lines from
+               the points to the regression line represent the errors of prediction.
+               As you can see, the red point is very near the regression line;
+               its error of prediction is small. By contrast, the yellow point
+               is much higher than the regression line and therefore its error
+               of prediction is large. </p>
+				<div class="figureHolder" style="width:385">
+                
+               <img src="./linear_regression_files/reg_error.gif" width="373" height="400"> 
+              <p class="tableTitle">Figure 2. A scatter plot of the example
+                     data. The black line consists of the predictions, the points
+                     are the actual data, and the vertical lines between the
+                     points and the black line represent errors of prediction.</p>         
+             </div>
+             
+             <p class="firstp">The error of prediction for a point is the value of the point
+               minus the predicted value (the value on the line). Table 2 shows
+               the predicted values (Y') and the errors of prediction (Y-Y').
+               For example, the first point  has a Y of 1.00 and
+               a predicted Y (called Y') of 1.21. Therefore, its error of prediction is -0.21. </p>
+             <div class="tableHolder350">
+               <p class="tableTitle">Table 2. Example data.</p>
+               <table class="dataTable2 centered">
+               <tbody><tr>
+               		<th>
+               			X
+               		</th>
+               		<th>
+               			Y
+               		</th>
+                    <th>
+               			Y'
+               		</th>
+                    <th>
+               			Y-Y'
+               		</th>
+                    <th>
+               			(Y-Y')<sup>2</sup>
+               		</th>
+               	</tr>
+                <tr>
+               		<td>
+               			1.00
+               		</td>
+               		<td>
+               			1.00
+               		</td>
+                    <td>
+               			1.210
+               		</td>
+                    <td>
+               			-0.210
+               		</td>
+                    <td>
+               			0.044
+               		</td>
+               	</tr>
+                <tr>
+               		<td>
+               			2.00
+               		</td>
+               		<td>
+               			2.00
+               		</td>
+                    <td>
+               			1.635
+               		</td>
+                    <td>
+               			0.365
+               		</td>
+                    <td>
+               			0.133
+               		</td>
+               	</tr>
+                <tr>
+               		<td>
+               			3.00
+               		</td>
+               		<td>
+               			1.30
+               		</td>
+                    <td>
+               			2.060
+               		</td>
+                    <td>
+               			-0.760
+               		</td>
+                    <td>
+               			0.578
+               		</td>
+               	</tr>
+                <tr>
+               		<td>
+               			4.00
+               		</td>
+               		<td>
+               			3.75
+               		</td>
+                    <td>
+               			2.485
+               		</td>
+                    <td>
+               			1.265
+               		</td>
+                    <td>
+               			1.600
+               		</td>
+               	</tr>
+                <tr>
+               		<td>
+               			5.00
+               		</td>
+               		<td>
+               			2.25
+               		</td>
+                    <td>
+               			2.910
+               		</td>
+                    <td>
+               			-0.660
+               		</td>
+                    <td>
+               			0.436
+               		</td>
+               	</tr>
+              </tbody></table>
+              </div>
+             <p class="firstp">You may have noticed that we did not specify what
+               is meant by
+               "best-fitting line." By far, the most commonly-used criterion
+               for the best-fitting line is the line that minimizes the sum of
+               the squared errors of prediction. That is the criterion that was
+               used to find the line in Figure 2. The last column in Table 2
+               shows the squared errors of prediction. The sum of the squared
+               errors of prediction shown in Table 2 is lower than it would be
+               for any other regression line. </p>
+             <p class="para">The formula for a regression line is</p>
+             <p class="equation">Y' = bX + A</p>
+             <p class="firstp">where Y' is the predicted score, b is the slope
+               of the line, and A is the Y intercept. The equation for the line
+               in Figure 2 is</p>
+             <p class="equation">Y' = 0.425X + 0.785 </p>
+             <p class="firstp">For X = 1,</p>
+             <p class="equation">Y' = (0.425)(1) + 0.785 = 1.21.</p>
+             <p class="firstp">For
+                   X = 2,</p>
+             <p class="equation">Y' = (0.425)(2) + 0.785 = 1.64.</p>
+             <p class="section1">Computing the Regression
+               Line </p>
+             <p class="firstp">In the age of computers, the regression line
+               is typically computed with statistical software. However, the
+               calculations are relatively easy, and are given here for anyone who
+               is interested. The calculations are based on the statistics shown
+               in Table 3. M<sub>X</sub> is the mean of X, M<sub>Y</sub> is the mean of Y, s<sub>X</sub> is
+               the standard deviation of X, s<sub>Y</sub> is the
+               <span class="term">standard deviation</span> of Y, and r is the <span class="term">correlation</span> between
+               X and Y. </p>
+             <p class="link"><a href="http://onlinestatbook.com/2/summarizing_distributions/variability.html">Formula for standard deviation</a><br>
+              <a href="http://onlinestatbook.com/2/describing_bivariate_data/calculation.html">Formula for correlation</a>              </p>
+             <div class="tableHolder350">
+               <p class="tableTitle">Table 3. Statistics for computing the regression line.</p>
+               <table class="dataTable2 centered">
+               <tbody><tr>
+               		<th>
+               			M<sub>X</sub>
+               		</th>
+               		<th>
+               			M<sub>Y</sub>
+               		</th>
+                    <th>
+               			s<sub>X</sub>
+               		</th>
+                    <th>
+               			s<sub>Y</sub>
+               		</th>
+                    <th>
+               			r
+               		</th>
+               	</tr>
+                <tr>
+               		<td>
+               			3
+               		</td>
+               		<td>
+               			2.06
+               		</td>
+                    <td>
+               			1.581
+               		</td>
+                    <td>
+               			1.072
+               		</td>
+                    <td>
+               			0.627
+               		</td>
+               	</tr>
+              </tbody></table>
+              </div>
+             <p>The  slope (b) can be calculated as follows:</p>
+             <p class="equation">b = r s<sub>Y</sub>/s<sub>X</sub></p>
+             <p>and the intercept (A) can be calculated as</p>
+             <p class="equation">A = M<sub>Y</sub> - bM<sub>X</sub>. </p>
+             <p class="firstp">For these data, </p>
+             <p class="equation">b = (0.627)(1.072)/1.581 = 0.425</p>
+             <p class="equation">A = 2.06 - (0.425)(3) = 0.785</p>
+             <p class="firstp">Note that the calculations have all been shown
+               in terms of sample statistics rather than population parameters.
+               The formulas are the same; simply use the parameter values
+               for means, standard deviations, and the correlation. </p>
+             <p class="section1">Standardized Variables</p>
+             <p class="firstp">The regression equation is simpler if variables are <a href="javaScript:glossary(&#39;standardize&#39;)" title="Definition in a new window." class="term">standardized</a> so that their means are equal to 0 and standard deviations are equal to 1, for then b = r and A = 0. This makes the regression line:</p>
+             <p class="equation">Z<sub>Y'</sub> = (r)(Z<sub>X</sub>)</p>
+             <p class="firstp">where Z<sub>Y'</sub> is the predicted standard score for Y, r is the correlation, and Z<sub>X</sub> is the standardized score for X. Note that the slope of the regression equation for standardized variables is r.             </p>
+             <p class="section1">A Real Example</p>
+             <p class="firstp">The case study "<a href="http://onlinestatbook.com/2/case_studies/sat.html">SAT and College GPA"</a> contains 
+               high school and university grades for 105 computer science majors
+               at a local state school. We now consider how we could predict
+               a student's university GPA if we knew his or her high school GPA.</p>
+             <p class="firstp">Figure 3 shows a scatter plot of University GPA
+               as a function of High School GPA. You can see from the figure
+               that there is a strong positive relationship. The correlation
+               is 0.78. The regression equation is</p>
+             <p class="equation">University GPA' = (0.675)(High School
+               GPA) + 1.097</p>
+             <p class="firstp">Therefore, a student with a high school GPA of
+               3 would be predicted to have a university GPA of</p>
+             <p class="equation">University GPA' = (0.675)(3)
+                 + 1.097 = 3.12.</p>
+                 <div class="figureHolder" style="width:425">
+                     <img border="0" width="391" height="288" src="./linear_regression_files/gpa.jpg">
+                     <p class="tableTitle">Figure 3. University GPA as a function
+                   of High School GPA.</p>
+                    </div>
+              <p class="section1">Assumptions</p>
+             <p class="firstp">It may surprise you, but the calculations shown
+               in this section are assumption-free. Of course, if the relationship
+               between X and Y were not linear, a different shaped function could
+               fit the data better. <span class="term"><a href="javaScript:glossary(&#39;inferential_statistics&#39;)" title="Definition in a new window." class="term">Inferential statistics</a></span> in
+               regression are based on several assumptions, and these assumptions
+               are presented in a <a href="http://onlinestatbook.com/2/regression/inferential.html">later section of this chapter</a>. </p>
+             <p class="equation">&nbsp;</p>
+             <!-- #EndEditable --> 
+       
+         
+               <div id="display" class="questionX"><p class="question"><b>Question 1 out of 7.</b><br>
+The formula for a regression equation is Y' = 3X - 2. What would be the predicted Y score for a person scoring 4 on X?
+<br><br><input type="text" id="numeric"> </p></div>
+<div class="buttonX" id="question_buttons">
+	<input name="" type="button" value="Check Answer" onclick="checkAnswers()" id="b3">
+	<input name="" type="button" value="Previous Question" onclick="previous()" id="b1" disabled="">
+	<input name="" type="button" value="Next Question" onclick="next()" id="b2">
+	<input name="" type="button" value="Similar Question" id="similar" onclick="showQuestion()" style="visibility: hidden;">
+</div>       
+
+<div id="feedback" class="buttonX"></div>
+
+<div id="bottomOfPage"> <a href="javaScript:goPrev()">Previous Section</a> &nbsp;|&nbsp; <a href="javaScript:goNext()">Next Section</a></div>
+              
+<!-- #BeginEditable "extra" -->
+
+
+<!-- #EndEditable -->
+			  
+			  						
+			</td>
+          </tr>
+  </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+</form>
+
+<script src="./linear_regression_files/urchin.js.download" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-141388-4";
+urchinTracker();
+</script>
+
+
+<!-- #EndTemplate -->
+</body></html>

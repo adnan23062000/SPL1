@@ -1,0 +1,489 @@
+ .oneColFixCtr #container {
+	/*width: 780px;  /* using 20px less than a full 800px width allows for browser chrome and avoids a horizontal scroll bar */
+	
+	background: #FFFFFF;
+	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+	border: 2px solid #000000;
+	padding-left:20px;
+	padding-right:20px;
+	
+	
+}
+.div1 {
+    width: 350px;
+    padding: 8px;
+    border: 1px solid blue;
+}
+
+.tableHolder {
+	
+	
+	margin:20px;
+	
+	
+}
+.tableHolder200 {
+	
+	width:200px;
+	margin:20px;
+	
+	
+}
+.tableHolder250 {
+	width:250px;
+	margin:20px;
+	
+}
+
+.tableHolder300 {
+	
+	width:250px;
+	margin:20px;
+	
+	
+}
+
+
+.tableHolder275 {
+	
+	width:275px;
+	margin:20px;
+	
+	
+}
+.tableHolder350 {
+	
+	width:350px;
+	margin:20px;
+	
+	
+}
+
+.tableHolder400 {
+	
+	width:400px;
+	margin:20px;
+	
+	
+}
+
+.tableHolder500 {
+	
+	width:500px;
+	margin:20px;
+	
+	
+}
+.tableHolder750 {
+	
+	width:750px;
+	margin:20px;	
+	
+}
+
+.figureHolder {
+	padding: 5px;
+	margin-top: 35px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	margin-left: 20px;	
+	
+}
+.figureHolder figureCaption {
+	
+	margin-top: 35px;
+	margin-bottom: 20px;
+	
+}
+.dataTable2{
+	border-width: 1px;
+	border-spacing: 0;
+	border-style: solid;
+	border-color: black;
+	border-collapse: separate;
+	background-color: white;
+	text-align: right;
+	width:100%;
+}
+.dataTable2 th {
+	border-width: 1px;
+	padding: 5px;
+	border-style: inset;
+	border-color: black;
+	background-color: #FAEBD7;
+	text-align: center;
+	vertical-align: bottom;
+}
+.dataTable2 td {
+	font-family: Courier, "Courier New", mono;
+	border-width: 1px;
+	padding: 5px;
+	border-style: inset;
+	border-color: black;
+	background-color: white;
+	
+	
+}
+
+.dataTable1{
+	border-width: 1px;
+	border-spacing: 0;
+	border-style: solid;
+	border-color: black;
+	border-collapse: separate;
+	background-color: white;
+	text-align: left;
+	width: 100%;
+}
+.dataTable1 th {
+	border-width: 1px;
+	padding: 5px;
+	border-style: inset;
+	border-color: black;
+	background-color: #FAEBD7;
+	text-align: center;
+}
+.dataTable1 td {
+	font-family: Courier, "Courier New", mono;
+	border-width: 1px;
+	padding: 5px;
+	border-style: inset;
+	border-color: black;
+	background-color: white;
+	
+	
+}
+
+
+
+.back {
+	background-color: #EEEEEE;
+	background-position: center
+}
+.smalldata {  font-family: Courier, "Courier New", mono; font-size: 10px}
+.sectiontitle {font-weight: bold; color: #FF0000; text-indent: 0pt; margin-top: 0px}
+.caption {
+	font-family: Geneva, Verdana, Arial, Helvetica, sans-serif;
+	background-color: #FBFFDD;
+}
+.section1 {
+	font-weight: bold;
+	color: #000000;
+	text-indent: 0pt;
+	margin-top: 12px;
+	margin-bottom: 0px;
+	font-variant: small-caps;
+	font-family: Geneva, Verdana, Arial, Helvetica, sans-serif;
+}
+.section2 {  font-style: italic; text-indent: 0pt; padding-top: 4px; margin-bottom: 0px;font-variant: small-caps}
+.objectives {  width: 400px; margin-left: 50px; border: 2px #000000 none; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; text-indent: 0pt; margin-top: 15px}
+.mainTable {
+	background-color: #eeeeee; 
+	width:1250px;
+	
+	
+}
+.main {
+	background-color: #FFFFFF;
+	font-family: Geneva, Verdana, Arial, Helvetica, sans-serif;
+	width:1200px;	
+}	
+.prelim {
+	width: 255px;
+	font-size: small;
+	border-right-width: 1px;
+	border-right-style: solid;	
+}
+.stripe {
+	width: 15px;
+	
+}
+.objectiveTitle {  font-weight: bold; margin-top: 4px}
+.nav {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px}
+.figure {
+	margin-bottom: 15px;
+	margin-top: 25px;
+	border: 1px none #000000;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: #FBFFDD;
+	padding-bottom: 25px;
+}
+.figure2 {
+	margin-bottom: 15px;
+	margin-top: 25px;
+	border: 1px solid #000000;
+	margin-left: 15px;
+	background-color: #FBFFDD;
+	padding-top: 12px;
+	padding-right: 25px;
+	padding-bottom: 25px;
+	padding-left: 25px;
+}
+.caution {  color: #FF0000}
+.monodata {  font-family: Courier, "Courier New", mono; font-size: 18px}
+.dataTableXX {
+	font-family: Courier, "Courier New", mono;
+	background-color: #FFFFFF;
+	margin-top:12px;
+	margin-bottom:5px;
+	border:thin;
+	
+	
+	text-align: left;
+}
+.caution {  color: #FF0000; text-indent: 0pt; width: 300px; margin-top: 4px; margin-bottom: 4px; border: #000000; border-style: double; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px}
+.main {
+	background-color: #FFFFFF;
+	font-family: Geneva, Verdana, Arial, Helvetica, sans-serif;
+	width:1066px;	
+}
+.link { margin-left: 0px; border: 1px #000000 dashed; padding-top: 2px; padding-right: 6px; padding-bottom: 2px; padding-left: 10px; margin-top: 12px; margin-bottom: 12px; float: none; clear: none; list-style-type: disc; list-style-position: inside; text-indent: 0pt}
+.noMargin {  margin-top: 0px; margin-bottom: 0px}
+.optional {  border: none; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; color: #666666}
+.sub {  vertical-align: sub}
+.question {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	
+	padding: 12px;
+}
+.firstp {
+	text-indent: 0em;
+	line-height: 1.5em;
+	margin-bottom: 0;
+	margin-top: 0;
+	font-family: Geneva, Verdana, Arial, Helvetica, sans-serif;
+}
+.term {  font-style: italic}
+.prerequisite {
+	text-indent: 0pt;
+	margin-top: 12px;
+	margin-left: 0px;
+	font-style: italic;
+	margin-bottom: 0px;
+}
+.prerequisitetitle {
+	color: #000000;
+	font-style: italic;
+}
+.keywordtitle { font-weight: bold; color: #000000 }
+.keywords { text-indent: 0pt; margin-bottom: 20px; margin-top: 10px; margin-left: 50px}
+
+.para {
+	text-indent: 2em;
+	line-height: 1.5em;
+	margin-bottom: 0;
+	margin-top: 0;
+	font-family: Geneva, Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+
+}
+
+.glossary {  font-family: "Courier New", Courier, mono; background-color: #FFFFCC}
+.cite { text-indent: -30px; padding-left: 30px }
+.important {  color: #FF0000}
+.emphasis {  font-weight: bolder}
+.definition {  background-color: #CCCCCC}
+.old_thead { font-size: 10px; border-color: black black #000000; border-style: groove }
+.definitionLink { }
+.small { font-size: 10px }
+.extraLarge  { font-size: x-large }
+.example {
+	border: 1px #000000 dashed;
+	padding-top: 2px;
+	padding-right: 6px;
+	padding-bottom: 2px;
+	padding-left: 10px;
+	float: none;
+	clear: none;
+	list-style-type: disc;
+	list-style-position: inside;
+	text-indent: 0pt;
+	margin: 25px;
+}
+.symbol {  font-family: Symbol}
+.equation {  margin-left: 50px; font-family: "Courier New", Courier, mono}
+.sup {  vertical-align: super}
+.smallsub {
+	font-size: small;
+	vertical-align: sub;
+}
+.red {
+	color: #FF0000;
+}
+.reference {
+	padding-left: .5in;
+	border-left-style: none;
+	text-align: left;
+	text-indent: -0.5in;
+}
+.lower_alpha {  list-style-type: lower-alpha}
+.upper_roman {
+	list-style-type: upper-roman;
+}
+.numeric {  list-style-type: decimal}
+.upper_alpha {  list-style-type: upper-alpha}
+.lower_roman {  list-style-type: lower-roman}
+.person {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: large;
+}
+.centered {
+	text-align: center;
+}
+
+.left {
+	text-align: left;
+}
+
+
+.dataTableBig {
+	font-size: medium;
+	font-family: Courier, "Courier New", mono;
+	background-color: #FFFFFF;
+	
+}
+.TableTitleOld {
+	text-align: left;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
+}
+.right {
+	text-align: right;
+}
+.section3 {
+	font-style: italic;
+	margin-bottom: 0px;
+	margin-top: 15px;
+	
+}
+.audio {
+	color: #FFFFFF;
+}
+.notop {
+	margin-top: 0px;
+	
+}
+.whitebg {
+	background-color: #FFFFFF;
+	width: 460px;
+	padding: 12px;	
+}
+.whitebg2 {
+	background-color: #FFFFFF;
+	width: 616px;
+	padding: 12px;
+	margin-top: 24px;
+	margin-bottom: 24px;	
+}
+.notop0 {
+	margin-top: 0px;
+	
+}
+.questionX {
+	background-color: #eeeeee;
+	margin: 0px 0px 20px;
+	
+	
+}
+.buttonX {
+	background-color: #CFF;
+	margin-top: 20px;
+	
+}
+.author {
+	font-style: italic;
+	margin-bottom: 0px;
+}
+.whitebg {
+	background-color: #FFF;
+}
+.dataTableA {
+	font-family: Courier, "Courier New", mono;
+	background-color: #FFFFFF;
+	text-align:right;
+	margin: 0px;	
+}
+.innerTable {
+	border:1px;
+	spacing: 0px;
+	padding: 2px;
+	text-align: center;
+	
+	
+}
+.hanging {
+	padding-left: 1in;
+	border-left-style: none;
+	text-align: left;
+	text-indent: -0.5in;
+	margin-right: .5in;
+	
+	
+}
+.tableTitle {
+	padding-left: 20px;
+	border-left-style: none;
+	text-align: left;
+	text-indent: -20px;
+	margin-top:10px;
+	margin-bottom:0px;
+	
+	
+}
+#divHolder {
+ position:relative;
+ float:left;
+ width:1024px;
+}
+#div-nav {
+	 position:absolute;
+ top:0;
+ left:0;
+ width:500px;
+border-right:1px solid black;
+padding:4px;
+
+}
+
+
+#div-1L {
+ position:absolute;
+ top:0;
+ left:0;
+ width:500px;
+border-right:1px solid black;
+padding:4px;
+
+
+
+}
+
+#div-2L {
+ position:absolute;
+ top:0;
+ left:0;
+ width:500px;
+
+}
+
+
+#div-1R {
+ position:absolute;
+ top:0;
+ left:520px;
+ width:500px;
+
+}
+
+#div-2R {
+ position:absolute;
+ top:0;
+ left:520px;
+ width:500px;
+
+}
+.section_list {
+	margin-bottom: 6px;
+}
+
