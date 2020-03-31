@@ -12,13 +12,9 @@ public class SPL {
     public static void main(String[] args) throws FileNotFoundException {
         
         {
+            
             File_Operations ob = new File_Operations();
             ob.File_Subjects();
-            
-            MultipleRegression obj = new MultipleRegression();
-            //obj.getM();
-            obj.multiRegression();
-            
             
             System.out.print("Enter your choice:\n\n|1| = See the Linear Regression\n|2| = See the multiple Line regression\n|3| = Provide user input\n|4| = See estimated Grade Point\n\nEnter your choice: ");
         
@@ -29,6 +25,14 @@ public class SPL {
             if(userInput==1)
             {
                 obj1.LRegression();
+            }
+            else if(userInput==2)
+            {
+                obj1.MRegression();
+            }
+            else if(userInput==3)
+            {
+                
             }
         
         }

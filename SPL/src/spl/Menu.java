@@ -33,8 +33,18 @@ public class Menu {
         obj.showEquation();
     }
     
-    public void MRegression()
+    public void MRegression() throws FileNotFoundException
     {
+        MultipleRegression obj = new MultipleRegression();
+        obj.multiRegression();
+        
+        obj.showEqn();
+        
+    }
+    
+    public void UserInput()
+    {
+        Input obj = new Input();
         
     }
 }

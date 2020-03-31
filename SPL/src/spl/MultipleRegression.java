@@ -18,6 +18,7 @@ public class MultipleRegression {
     
     File_Operations obj2 = new File_Operations();
     public double sum=0;
+    public double[][] array = new double[4][1];
     
     public void multiRegression() throws FileNotFoundException
     {
@@ -72,11 +73,11 @@ public class MultipleRegression {
             System.out.print("\n");
         }
         
-        Matrix(x, obj2.list.size());
+        Matrix(x, y, obj2.list.size());
        
     }
     
-    public void Matrix(double[][] ara, int size)
+    public void Matrix(double[][] ara,double[][] y, int size)
     {
         double[][] transpose = new double[4][size];
         
@@ -95,11 +96,23 @@ public class MultipleRegression {
             System.out.print("\n");
         }
         
-        Multiply1(ara, transpose, size, size, 4);
+        Multiply1(ara, transpose, y, 4, 4, 3);
             
     }
     
-    public void Multiply1(double[][] first, double[][] second, int row, int column, int row_2)
+    public void Multiply1(double[][] first, double[][] second, double[][] y, int row, int column, int row_2)
+    {
+        
+        double m1[][] = Multiply(second, first, row, column, row_2);
+        double m2[][] = inverse(m1, row, column);
+        double m3[][] = Multiply(m2, second, row, 3, column);
+        double finalMatrix[][] = Multiply(m3, y, 4, 1, 3);
+        
+        array = finalMatrix;
+        
+    }
+    
+    public double[][] Multiply(double[][] first, double[][] second, int row, int column, int row_2)
     {
         double[][] multiply = new double[row][column];
         
@@ -116,22 +129,24 @@ public class MultipleRegression {
             }
         }
         
-      for(int i=0;i<row;i++)
-      {
-          for(int j=0;j<column;j++)
-              System.out.print(multiply[i][i] + " ");
+        System.out.print("\n\n");
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<column;j++)
+                System.out.print(multiply[i][j] + " ");
           
-          System.out.print("\n");
-      }
+            System.out.print("\n");
+        }
       
-      inverse(multiply, row, column);
-        
+        return multiply;
     }
     
-    public void inverse(double[][] a, int row, int column)
+    public static double[][] inverse(double[][] a, int row, int column)
     {
         
         double d[][] = invert(a);
+        
+        //double mulY[][] = Multiply1(d, , row, 1, 4);
  
         System.out.println("The inverse is: ");
         for (int i=0; i<row; ++i) 
@@ -142,6 +157,8 @@ public class MultipleRegression {
             }
             System.out.println();
         }
+        
+        return d;
         
     }
     
@@ -234,5 +251,15 @@ public class MultipleRegression {
                     a[index[i]][l] -= pj*a[index[j]][l];
             }
         }
+    }
+    
+    public void showEqn()
+    {
+        System.out.print("The Equation is: Y = " + array[0][0] + " + " + array[1][0] + " X1  +  " + array[2][0] + " X2  +  " + array[3][0] + " X3\n\n");
+    } 
+    
+    public double CGCalc2(double math, double physics, double ict)
+    {
+        return ((this.array[0][0])+(this.array[1][0]*math)+(this.array[2][0]*physics)+(this.array[3][0]*ict));
     }
 }
