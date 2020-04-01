@@ -62,4 +62,5 @@ public class ArrayList_Data {
     public void setGPA(double gpa) {
         this.gpa = gpa;
     }
+    
 }

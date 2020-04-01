@@ -32,7 +32,7 @@ public class SPL {
             }
             else if(userInput==3)
             {
-                
+                obj1.UserInput();
             }
         
         }

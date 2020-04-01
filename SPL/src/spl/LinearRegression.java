@@ -106,7 +106,11 @@ public class LinearRegression {
     
     public double CGCalc(double studyHour)
     {
-        return ((this.beta)*studyHour) + alpha;
+        double x = ((this.beta)*studyHour) + alpha;
+        if(x>4)
+            return 4;
+        else
+            return x;
     }
 
 }

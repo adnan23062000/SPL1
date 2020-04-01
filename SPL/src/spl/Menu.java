@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package spl;
 
 import java.io.FileNotFoundException;
 
-/**
- *
- * @author Asus
- */
+
 public class Menu {
     
     public void LRegression() throws FileNotFoundException
@@ -42,9 +35,9 @@ public class Menu {
         
     }
     
-    public void UserInput()
+    public void UserInput() throws FileNotFoundException
     {
         Input obj = new Input();
-        
+        obj.Input1();
     }
 }
