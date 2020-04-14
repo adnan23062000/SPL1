@@ -87,11 +87,29 @@ public class Input {
         
         
         Routine object = new Routine();
+        
+        object.setStudyTime();
+        
         object.setRoutineProg(CGs);
         object.setRoutineMath(CGs);
         object.setRoutineStat(CGs);
         object.setRoutineSocio(CGs);
-        object.randomRoutine();
+        object.setRoutineDiscrete(CGs);
+        object.setRoutineSoftware(CGs);
+        
+        boolean val = object.studyHoliday();
+        if(val)
+        {
+            HolidayCheck objj = new HolidayCheck();
+            boolean xx = objj.IsHoliday();
+            if(xx==false)
+                object.randomRoutine();
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"\nAS YOU DON'T STUDY IN WEEKENDS\nRELAX AND HAVE A NICE DAY\n");
+        }
     }
     
 }
