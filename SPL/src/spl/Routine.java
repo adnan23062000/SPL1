@@ -48,7 +48,7 @@ public class Routine {
     public void setRoutineMath(double[] CGs)
     {
         double cg = (.4*CGs[0]) + (.4*CGs[1]) + (.2*CGs[2]);
-        SubjectArrayList ob = new SubjectArrayList("Calculus", (cg*17), 12);
+        SubjectArrayList ob = new SubjectArrayList("Calculus And Analytical Geometry", (cg*17), 12);
         alist.add(ob);
         double t3 = (ob.getTime()/180)*60;
         double c3 = (ob.getChapter())/180;
@@ -81,7 +81,7 @@ public class Routine {
     public void setRoutineSoftware(double[] CGs)
     {
         double cg = (.4*CGs[0]) + (.45*CGs[1]) + (.15*CGs[2]);
-        SubjectArrayList ob = new SubjectArrayList("Discrete Mathematics", (cg*15), 10);
+        SubjectArrayList ob = new SubjectArrayList("Introduction To Software Engineering", (cg*15), 10);
         alist.add(ob);
         double t6 = (ob.getTime()/180)*60;
         double c6 = (ob.getChapter())/180;
