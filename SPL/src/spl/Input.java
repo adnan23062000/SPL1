@@ -24,7 +24,7 @@ import java.lang.*;
 public class Input {
     
     public double studyHr, math, physics, ict, iq, wMean, expectation;
-    public double[] CGs = new double[3];
+    public static double[] CGs = new double[3];
     public double[] value = new double[3];
     
     public void Input1() throws FileNotFoundException
@@ -90,12 +90,12 @@ public class Input {
         
         object.setStudyTime();
         
-        object.setRoutineProg(CGs);
+        /*object.setRoutineProg(CGs);
         object.setRoutineMath(CGs);
         object.setRoutineStat(CGs);
         object.setRoutineSocio(CGs);
         object.setRoutineDiscrete(CGs);
-        object.setRoutineSoftware(CGs);
+        object.setRoutineSoftware(CGs);*/
         
         boolean val = object.studyHoliday();
         if(val)
@@ -103,7 +103,10 @@ public class Input {
             HolidayCheck objj = new HolidayCheck();
             boolean xx = objj.IsHoliday();
             if(xx==false)
-                object.randomRoutine();
+            {
+                ClassRoutine object2 = new ClassRoutine();
+                object2.RoutineAccordingToClass(CGs);
+            }
             
         }
         else

@@ -31,7 +31,7 @@ public class Routine {
         double t1 = (ob.getTime()/180)*60;
         double c1 = (ob.getChapter())/180;
         str[0] = "\nStudy " + ob.getSubName() + " for " + t1 + " minutes.\nComplete " + (c1*100) + " % of a chapter.\nTime: From: " + time + " To: " + (time = time + (t1/60)) + "\n"; 
-        //JOptionPane.showMessageDialog(null, str[0]);
+        JOptionPane.showMessageDialog(null, str[0]);
     }
     
     public void setRoutineStat(double[] CGs)
@@ -42,7 +42,7 @@ public class Routine {
         double t2 = (ob.getTime()/180)*60;
         double c2 = (ob.getChapter())/180;
         str[1] = "\nStudy " + ob.getSubName() + " for " + t2 + " minutes.\nComplete " + (c2*100) + " % of a chapter.\nTime: From: " + time + " To: " + (time=time+(t2/60)) + "\n"; 
-        //JOptionPane.showMessageDialog(null, str[1]);
+        JOptionPane.showMessageDialog(null, str[1]);
     }
     
     public void setRoutineMath(double[] CGs)
@@ -53,7 +53,7 @@ public class Routine {
         double t3 = (ob.getTime()/180)*60;
         double c3 = (ob.getChapter())/180;
         str[2] = "\nStudy " + ob.getSubName() + " for " + t3 + " minutes.\nComplete " + (c3*100) + " % of a chapter.\nTime: From: " + time + " To: " + (time=time+(t3/60)) + "\n"; 
-        //JOptionPane.showMessageDialog(null, str[2]);
+        JOptionPane.showMessageDialog(null, str[2]);
     }
     
     public void setRoutineSocio(double[] CGs)
@@ -64,7 +64,7 @@ public class Routine {
         double t4 = (ob.getTime()/180)*60;
         double c4 = (ob.getChapter())/180;
         str[3] = "\nStudy " + ob.getSubName() + " for " + t4 + " minutes.\nComplete " + (c4*100) + " % of a chapter.\nTime: From: " + time + " To: " + (time=time+(t4/60)) + "\n"; 
-        //JOptionPane.showMessageDialog(null, str[3]);
+        JOptionPane.showMessageDialog(null, str[3]);
     }
     
     public void setRoutineDiscrete(double[] CGs)
@@ -75,7 +75,7 @@ public class Routine {
         double t5 = (ob.getTime()/180)*60;
         double c5 = (ob.getChapter())/180;
         str[4] = "\nStudy " + ob.getSubName() + " for " + t5 + " minutes.\nComplete " + (c5*100) + " % of a chapter.\nTime: From: " + time + " To: " + (time=time+(t5/60)) + "\n"; 
-        //JOptionPane.showMessageDialog(null, str[3]);
+        JOptionPane.showMessageDialog(null, str[4]);
     }
     
     public void setRoutineSoftware(double[] CGs)
@@ -86,7 +86,7 @@ public class Routine {
         double t6 = (ob.getTime()/180)*60;
         double c6 = (ob.getChapter())/180;
         str[5] = "\nStudy " + ob.getSubName() + " for " + t6 + " minutes.\nComplete " + (c6*100) + " % of a chapter.\nTime: From: " + time + " To: " + (time = time+(t6/60)) + "\n"; 
-        //JOptionPane.showMessageDialog(null, str[3]);
+        JOptionPane.showMessageDialog(null, str[5]);
     }
     
     public void randomRoutine()
@@ -101,7 +101,7 @@ public class Routine {
             if(i==val)
                 continue;
             else
-                System.out.print("\nObjective: 0" + (i+1) + str[i]+"\n\n");
+                System.out.print("\nObjective: " + (i+1) + str[i]+"\n\n");
         }
     }
     
