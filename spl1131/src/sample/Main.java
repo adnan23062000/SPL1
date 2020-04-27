@@ -2,6 +2,9 @@ package sample;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,11 +18,14 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
+import java.util.Calendar;
 
 public class Main extends Application {
 
     Stage window;
-    Scene scene1, scene2, scene3, scene4, scene5, scene6, scene7;
+    Scene scene1, scene2, scene3, scene4, scene5, scene6, scene7, scene8;
+
+    public boolean weekend, holiday;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -61,6 +67,7 @@ public class Main extends Application {
         others.setTranslateX(610);
         others.setTranslateY(530);
         others.setPrefSize(100, 60);
+        others.setOnAction(e -> createCalendar());
 
         button2.setOnAction(e -> window.setScene(scene1));
 
@@ -141,26 +148,163 @@ public class Main extends Application {
         gc.drawImage(pageThree,0,0);
         layout.getChildren().addAll(c, label1, name, passwordField, label2, button2, create);
 
-        create.setOnAction(e -> inputData());
+        create.setOnAction(e -> {
+            try {
+                inputData();
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
+        });
 
         button2.setOnAction(e -> window.setScene(scene2));
         scene3 = new Scene(layout, 1300, 650);
         window.setScene(scene3);
     }
 
-    public void inputData()
-    {
+    public void inputData() throws FileNotFoundException {
+
+        File_Operations obj = new File_Operations();
+        obj.File_Subjects();
+
+        MultipleRegression objj = new MultipleRegression();
+        objj.multiRegression();
+
+        LinearRegression obj2 = new LinearRegression();
+        obj2.xyMethod();
+        obj2.setMeanXY();
+        obj2.summationXY();
+        obj2.AlphaBetaCalc();
+
         Label label1 = new Label("Enter Study Hour:  ");
         label1.setTranslateX(390);
         label1.setTranslateY(100);
 
-        Slider slider = new Slider(0, 24, 0);
+        Label label2 = new Label("Enter Your Marks: ");
+        label2.setTranslateX(390);
+        label2.setTranslateY(200);
+
+        Label label3 = new Label("Math ->  ");
+        label3.setTranslateX(390);
+        label3.setTranslateY(230);
+
+        Label label4 = new Label("Physics ->  ");
+        label4.setTranslateX(390);
+        label4.setTranslateY(260);
+
+        Label label5 = new Label("ICT ->  ");
+        label5.setTranslateX(390);
+        label5.setTranslateY(290);
+
+        Label label6 = new Label("Enter Your IQ: ");
+        label6.setTranslateX(390);
+        label6.setTranslateY(380);
+
+        Label label7 = new Label("Enter Your Preferable Study Time");
+        label7.setTranslateX(390);
+        label7.setTranslateY(473);
+
+        Label label8 = new Label("Do You Study in weekends?  ");
+        Label label9 = new Label("Do You Study in Holidays?  ");
+        label8.setTranslateX(390);
+        label8.setTranslateY(500);
+        label9.setTranslateX(390);
+        label9.setTranslateY(540);
+
+        TextField textMath = new TextField();
+        textMath.setTranslateX(450);
+        textMath.setTranslateY(230);
+        TextField textPhy = new TextField();
+        textPhy.setTranslateX(450);
+        textPhy.setTranslateY(260);
+        TextField textICT = new TextField();
+        textICT.setTranslateX(450);
+        textICT.setTranslateY(290);
+
+        Button submit = new Button("Submit");
+        Button markResult = new Button();
+        Button markResult2 = new Button();
+        Button markResult3 = new Button();
+        Button markResult4 = new Button();
+        markResult.setTranslateX(800);
+        markResult.setTranslateY(240);
+        markResult.setPrefSize(150, 60);
+        markResult2.setTranslateX(800);
+        markResult2.setTranslateY(80);
+        markResult2.setPrefSize(150, 60);
+        markResult3.setTranslateX(800);
+        markResult3.setTranslateY(360);
+        markResult4.setTranslateX(800);
+        markResult4.setTranslateY(450);
+        markResult2.setPrefSize(150, 60);
+        markResult3.setPrefSize(150, 60);
+        markResult4.setPrefSize(150, 60);
+        submit.setTranslateX(480);
+        submit.setTranslateY(320);
+
+        submit.setOnAction(e -> {
+            double math = Double.parseDouble(textMath.getText());
+            double physics = Double.parseDouble(textPhy.getText());
+            double ict = Double.parseDouble(textICT.getText());
+
+            markResult.setText(objj.CGCalc2(math, physics, ict));
+        });
+
+        final Slider slider = new Slider(0, 24, 0);
         slider.setMajorTickUnit(1);
         slider.setMinorTickCount(5);
         slider.setShowTickLabels(true);
         slider.setShowTickMarks(true);
         slider.setTranslateX(550);
         slider.setTranslateY(100);
+
+        slider.valueProperty().addListener(
+                new ChangeListener<Number>() {
+
+                    public void changed(ObservableValue <? extends Number >
+                                                observable, Number oldValue, Number newValue)
+                    {
+                        double value = slider.getValue();
+                        markResult2.setText(obj2.CGCalc(value));
+                    }
+                });
+
+        String st[] = { "120", "130", "140", "150" };
+
+        ChoiceBox cbIQ = new ChoiceBox(FXCollections.observableArrayList(st));
+        cbIQ.setTranslateX(480);
+        cbIQ.setTranslateY(380);
+        cbIQ.setPrefSize(100, 30);
+
+        cbIQ.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+
+            // if the item of the list is changed
+            public void changed(ObservableValue ov, Number value, Number new_value)
+            {
+                // set the text for the label to the selected item
+                String x = st[new_value.intValue()];
+                int xx = Integer.parseInt(x);
+                if(xx==120)
+                    markResult3.setText("CG: 3.35");
+                if(xx==130)
+                    markResult3.setText("CG: 3.50");
+                if(xx==140)
+                    markResult3.setText("CG: 3.75");
+                if(xx==150)
+                    markResult3.setText("CG: 4.00");
+            }
+        });
+
+        String ab[] = { "Morning", "Noon", "Afternoon", "Evening", "Night" };
+
+        ChoiceBox studyTime = new ChoiceBox(FXCollections.observableArrayList(ab));
+        studyTime.setTranslateX(580);
+        studyTime.setTranslateY(470);
+        studyTime.setPrefSize(100, 30);
+
+        studyTime.getSelectionModel().selectedIndexProperty().addListener((ov, value, new_value) -> {
+            // set the text for the label to the selected item
+            String x = ab[new_value.intValue()];
+        });
 
         Image pageThree = new Image("pic3.PNG");
         Canvas c = new Canvas(1300,650);
@@ -172,9 +316,32 @@ public class Main extends Application {
         button2.setTranslateY(20);
         button2.setPrefSize(60, 30);
 
+        RadioButton r1 = new RadioButton("Yes");
+        r1.setTranslateX(580);
+        r1.setTranslateY(500);
+        RadioButton r2 = new RadioButton("Yes");
+        r2.setTranslateX(580);
+        r2.setTranslateY(540);
+        RadioButton r3 = new RadioButton("No");
+        r3.setTranslateX(620);
+        r3.setTranslateY(500);
+        RadioButton r4 = new RadioButton("No");
+        r4.setTranslateX(620);
+        r4.setTranslateY(540);
+
+        if(r1.isSelected())
+            weekend = true;
+        if(r2.isSelected())
+            holiday = true;
+        if(r3.isSelected())
+            weekend = false;
+        if(r4.isSelected())
+            holiday = false;
+
+        System.out.println("\nweekend  " + weekend + "\nHoliday  " + holiday);
 
         Pane layout = new Pane();
-        layout.getChildren().addAll(c, label1, slider, button2);
+        layout.getChildren().addAll(c, label1, slider, label2, label3, label4, label5, label6, label7, label8, label9, textMath, textPhy, textICT, submit, markResult, markResult2, markResult3, cbIQ, studyTime, r1, r2, r3, r4, button2);
 
         button2.setOnAction(e -> window.setScene(scene3));
         scene4 = new Scene(layout, 1300, 650);
@@ -233,7 +400,7 @@ public class Main extends Application {
         NumberAxis xAxis = new NumberAxis(0, 20, 3);
         xAxis.setLabel("Study Hour");
 
-        NumberAxis yAxis = new NumberAxis(0, 5, 5);
+        NumberAxis yAxis = new NumberAxis(2.5, 5, 20);
         yAxis.setLabel("CGPA");
 
         ScatterChart<String, Number> scatterChart = new ScatterChart(xAxis, yAxis);
@@ -273,10 +440,10 @@ public class Main extends Application {
         File_Operations obj = new File_Operations();
         obj.File_Subjects();
 
-        NumberAxis xAxis = new NumberAxis(0, 100, 3);
+        NumberAxis xAxis = new NumberAxis(50, 100, 3);
         xAxis.setLabel("Marks");
 
-        NumberAxis yAxis = new NumberAxis(0, 5, 5);
+        NumberAxis yAxis = new NumberAxis(2.5, 5, 20);
         yAxis.setLabel("CGPA");
 
         LineChart linechart = new LineChart(xAxis, yAxis);
@@ -313,6 +480,80 @@ public class Main extends Application {
 
         scene7 = new Scene(layout, 1300, 650);
         window.setScene(scene7);
+
+    }
+
+    public void createCalendar()
+    {
+        Button prev = new Button(" <-- ");
+        prev.setTranslateX(520);
+        prev.setTranslateY(50);
+        Button next = new Button(" --> ");
+        next.setTranslateX(680);
+        next.setTranslateY(50);
+        Button monthB = new Button();
+        monthB.setTranslateX(580);
+        monthB.setTranslateY(50);
+        monthB.setPrefSize(80, 30);
+
+        Button sun = new Button("SUN");
+        sun.setTranslateX(360);
+        sun.setTranslateY(120);
+
+        Button mon = new Button("MON");
+        mon.setTranslateX(440);
+        mon.setTranslateY(120);
+
+        Button tue = new Button("TUE");
+        tue.setTranslateX(520);
+        tue.setTranslateY(120);
+
+        Button wed = new Button("WED");
+        wed.setTranslateX(600);
+        wed.setTranslateY(120);
+
+        Button thu = new Button("THU");
+        thu.setTranslateX(680);
+        thu.setTranslateY(120);
+
+        Button fri = new Button("FRI");
+        fri.setStyle("-fx-base: red;");
+        fri.setTranslateX(760);
+        fri.setTranslateY(120);
+
+        Button sat = new Button("SAT");
+        sat.setStyle("-fx-base: red;");
+        sat.setTranslateX(84 0);
+        sat.setTranslateY(120);
+
+        String[] monthName = {"January", "February",
+                "March", "April", "May", "June", "July",
+                "August", "September", "October", "November",
+                "December"};
+
+        Calendar cal = Calendar.getInstance();
+        //String month = monthName[cal.get(Calendar.MONTH)];
+        monthB.setText(monthName[(cal.get(Calendar.MONTH))]);
+
+
+
+        prev.setOnAction(e -> {
+
+            cal.add(Calendar.MONTH, -1);
+            monthB.setText(monthName[(cal.get(Calendar.MONTH))]);
+
+        });
+
+        next.setOnAction(e -> {
+            cal.add(Calendar.MONTH, 1);
+            monthB.setText(monthName[(cal.get(Calendar.MONTH))]);
+        });
+
+        Pane layout = new Pane();
+        layout.getChildren().addAll(prev, next, monthB, sun, mon, tue, wed, thu, fri, sat);
+
+        scene8 = new Scene(layout, 1300, 650);
+        window.setScene(scene8);
 
     }
 

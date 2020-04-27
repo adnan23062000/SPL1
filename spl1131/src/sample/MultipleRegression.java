@@ -119,8 +119,6 @@ public class MultipleRegression {
 
         double d[][] = invert(a);
 
-        //double mulY[][] = Multiply1(d, , row, 1, 4);
-
         System.out.println("The inverse is: ");
         for (int i = 0; i < row; ++i) {
             for (int j = 0; j < column; ++j) {
@@ -151,7 +149,6 @@ public class MultipleRegression {
                     b[index[j]][k]
                             -= a[index[j]][i]*b[index[i]][k];
 
-        // Perform backward substitutions
         for (int i=0; i<n; ++i)
         {
             x[n-1][i] = b[index[n-1]][i]/a[index[n-1]][n-1];
@@ -173,7 +170,6 @@ public class MultipleRegression {
         int n = index.length;
         double c[] = new double[n];
 
-        // Initialize the index
         for (int i=0; i<n; ++i)
             index[i] = i;
 
@@ -216,7 +212,6 @@ public class MultipleRegression {
                 // Record pivoting ratios below the diagonal
                 a[index[i]][j] = pj;
 
-                // Modify other elements accordingly
                 for (int l=j+1; l<n; ++l)
                     a[index[i]][l] -= pj*a[index[j]][l];
             }
@@ -228,13 +223,13 @@ public class MultipleRegression {
         return " Y = " + array[0][0] + " + " + array[1][0] + " X1  +  " + array[2][0] + " X2  +  " + array[3][0] + " X3\n\n";
     }
 
-    public double CGCalc2(double math, double physics, double ict)
+    public String CGCalc2(double math, double physics, double ict)
     {
         double x = ((this.array[0][0])+(this.array[1][0]*math)+(this.array[2][0]*physics)+(this.array[3][0]*ict));
         if(x>4)
-            return 4;
+            return "CG: " + 4;
         else
-            return x;
+            return "CG: " + x;
     }
 
 }

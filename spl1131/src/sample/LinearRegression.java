@@ -99,13 +99,13 @@ public class LinearRegression {
         return " Y = " + beta + "X " + "+ " + alpha + "\n";
     }
 
-    public double CGCalc(double studyHour)
+    public String CGCalc(double studyHour)
     {
         double x = ((this.beta)*studyHour) + alpha;
         if(x>4)
-            return 4;
+            return "CG: " + 4;
         else
-            return x;
+            return "CG: " + x;
     }
 
 
