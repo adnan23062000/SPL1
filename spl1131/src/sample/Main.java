@@ -18,6 +18,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Main extends Application {
@@ -420,6 +421,15 @@ public class Main extends Application {
         obj.summationXY();
         obj.AlphaBetaCalc();
 
+        Button button2 = new Button("Back");
+        button2.setTranslateX(10);
+        button2.setTranslateY(10);
+        button2.setPrefSize(60, 30);
+
+        button2.setOnAction(e -> {
+            GraphMenu();
+        });
+
         Button eqn = new Button(obj.showEquation());
         eqn.setTranslateX(720);
         eqn.setTranslateY(40);
@@ -429,7 +439,7 @@ public class Main extends Application {
         label1.setTranslateX(720);
         label1.setTranslateY(20);
 
-        layout.getChildren().addAll(scatterChart, label1, eqn);
+        layout.getChildren().addAll(scatterChart, label1, eqn, button2);
 
         scene6 = new Scene(layout, 1300, 650);
         window.setScene(scene6);
@@ -470,13 +480,22 @@ public class Main extends Application {
         MultipleRegression obj2 = new MultipleRegression();
         obj2.multiRegression();
 
+        Button button2 = new Button("Back");
+        button2.setTranslateX(10);
+        button2.setTranslateY(10);
+        button2.setPrefSize(60, 30);
+
+        button2.setOnAction(e -> {
+            GraphMenu();
+        });
+
         Button eqn = new Button(obj2.showEqn());
         eqn.setTranslateX(600);
         eqn.setTranslateY(50);
         eqn.setPrefSize(600, 100);
 
         Pane layout = new Pane();
-        layout.getChildren().addAll(linechart, label1, eqn);
+        layout.getChildren().addAll(linechart, label1, eqn, button2);
 
         scene7 = new Scene(layout, 1300, 650);
         window.setScene(scene7);
@@ -496,35 +515,41 @@ public class Main extends Application {
         monthB.setTranslateY(50);
         monthB.setPrefSize(80, 30);
 
+        int sunb=360, monb=440, tueb=520, wedb=600, thub=680, frib=760, satb=840;
+
         Button sun = new Button("SUN");
-        sun.setTranslateX(360);
+        sun.setTranslateX(sunb);
         sun.setTranslateY(120);
 
         Button mon = new Button("MON");
-        mon.setTranslateX(440);
+        mon.setTranslateX(monb);
         mon.setTranslateY(120);
 
         Button tue = new Button("TUE");
-        tue.setTranslateX(520);
+        tue.setTranslateX(tueb);
         tue.setTranslateY(120);
 
         Button wed = new Button("WED");
-        wed.setTranslateX(600);
+        wed.setTranslateX(wedb);
         wed.setTranslateY(120);
 
         Button thu = new Button("THU");
-        thu.setTranslateX(680);
+        thu.setTranslateX(thub);
         thu.setTranslateY(120);
 
         Button fri = new Button("FRI");
         fri.setStyle("-fx-base: red;");
-        fri.setTranslateX(760);
+        fri.setTranslateX(frib);
         fri.setTranslateY(120);
 
         Button sat = new Button("SAT");
         sat.setStyle("-fx-base: red;");
-        sat.setTranslateX(84 0);
+        sat.setTranslateX(satb);
         sat.setTranslateY(120);
+
+        Button year = new Button();
+        year.setTranslateX(595);
+        year.setTranslateY(20);
 
         String[] monthName = {"January", "February",
                 "March", "April", "May", "June", "July",
@@ -534,26 +559,125 @@ public class Main extends Application {
         Calendar cal = Calendar.getInstance();
         //String month = monthName[cal.get(Calendar.MONTH)];
         monthB.setText(monthName[(cal.get(Calendar.MONTH))]);
+        year.setText(String.valueOf(cal.get(Calendar.YEAR)));
 
-
+        Pane layout = new Pane();
+        layout.getChildren().addAll(prev, next, monthB, sun, mon, tue, wed, thu, fri, sat, year);
+        setDates(cal.get(Calendar.MONTH), cal.get(Calendar.YEAR), layout);
 
         prev.setOnAction(e -> {
 
             cal.add(Calendar.MONTH, -1);
             monthB.setText(monthName[(cal.get(Calendar.MONTH))]);
+            year.setText(String.valueOf(cal.get(Calendar.YEAR)));
+            setDates(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), layout);
+            scene8 = new Scene(layout, 1300, 650);
+            window.setScene(scene8);
 
         });
 
         next.setOnAction(e -> {
             cal.add(Calendar.MONTH, 1);
             monthB.setText(monthName[(cal.get(Calendar.MONTH))]);
+            year.setText(String.valueOf(cal.get(Calendar.YEAR)));
+            setDates(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), layout);
+            scene8 = new Scene(layout, 1300, 650);
+            window.setScene(scene8);
         });
 
-        Pane layout = new Pane();
-        layout.getChildren().addAll(prev, next, monthB, sun, mon, tue, wed, thu, fri, sat);
+        //Pane layout = new Pane();
+        //layout.getChildren().addAll(prev, next, monthB, sun, mon, tue, wed, thu, fri, sat, year);
 
         scene8 = new Scene(layout, 1300, 650);
         window.setScene(scene8);
+
+    }
+
+    public void setDates(int month, int year, Pane layout)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.set(year, month, 1);
+        ArrayList<Button> buttonList  = new ArrayList<Button>();
+
+        int sunb=360, monb=440, tueb=520, wedb=600, thub=680, frib=760, satb=840;
+        int sunby=160, monby=160, tueby=160, wedby=160, thuby=160, friby=160, satby=160;
+
+        while (cal.get(Calendar.MONTH) == month){
+            int day = cal.get(Calendar.DAY_OF_WEEK);
+
+            if(day == Calendar.SATURDAY) {
+                Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                buttonList.add(button);
+                button.setTranslateX(satb);
+                button.setTranslateY(satby);
+                button.setStyle("-fx-base: red;");
+                satby+=40;
+                sunby+=40;
+                monby+=40;
+                tueby+=40;
+                wedby+=40;
+                thuby+=40;
+                friby+=40;
+            }
+            else if(day == Calendar.SUNDAY)
+            {
+                Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                buttonList.add(button);
+                button.setTranslateX(sunb);
+                button.setTranslateY(sunby);
+                //sunby+=40;
+            }
+            else if(day == Calendar.MONDAY)
+            {
+                Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                buttonList.add(button);
+                button.setTranslateX(monb);
+                button.setTranslateY(monby);
+                //monby+=40;
+            }
+            else if(day == Calendar.TUESDAY)
+            {
+                Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                buttonList.add(button);
+                button.setTranslateX(tueb);
+                button.setTranslateY(tueby);
+                //tueby+=40;
+            }
+            else if(day == Calendar.WEDNESDAY)
+            {
+                Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                buttonList.add(button);
+                button.setTranslateX(wedb);
+                button.setTranslateY(wedby);
+                //wedby+=40;
+            }
+            else if(day == Calendar.THURSDAY)
+            {
+                Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                buttonList.add(button);
+                button.setTranslateX(thub);
+                button.setTranslateY(thuby);
+                //thuby+=40;
+            }
+            else if(day == Calendar.FRIDAY)
+            {
+                Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                buttonList.add(button);
+                button.setTranslateX(frib);
+                button.setTranslateY(friby);
+                button.setStyle("-fx-base: red;");
+                //friby+=40;
+            }
+
+
+            cal.add(Calendar.DAY_OF_YEAR, 1);
+        }
+
+        buttonList.forEach(value -> {
+            layout.getChildren().add(value);
+        });
+
+
 
     }
 
