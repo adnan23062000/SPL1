@@ -15,6 +15,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
@@ -25,6 +26,8 @@ public class Main extends Application {
 
     Stage window;
     Scene scene1, scene2, scene3, scene4, scene5, scene6, scene7, scene8;
+
+    Calendar cal = Calendar.getInstance();
 
     public boolean weekend, holiday;
 
@@ -68,7 +71,13 @@ public class Main extends Application {
         others.setTranslateX(610);
         others.setTranslateY(530);
         others.setPrefSize(100, 60);
-        others.setOnAction(e -> createCalendar());
+        others.setOnAction(e -> {
+            try {
+                createCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
+        });
 
         button2.setOnAction(e -> window.setScene(scene1));
 
@@ -502,8 +511,7 @@ public class Main extends Application {
 
     }
 
-    public void createCalendar()
-    {
+    public void createCalendar(int year1, int month1) throws FileNotFoundException {
         Button prev = new Button(" <-- ");
         prev.setTranslateX(520);
         prev.setTranslateY(50);
@@ -555,14 +563,17 @@ public class Main extends Application {
                 "March", "April", "May", "June", "July",
                 "August", "September", "October", "November",
                 "December"};
-
-        Calendar cal = Calendar.getInstance();
         //String month = monthName[cal.get(Calendar.MONTH)];
-        monthB.setText(monthName[(cal.get(Calendar.MONTH))]);
-        year.setText(String.valueOf(cal.get(Calendar.YEAR)));
+        monthB.setText(monthName[month1]);
+        year.setText(String.valueOf(year1));
+
+        Image pageThree = new Image("pic3.PNG");
+        Canvas c = new Canvas(1300,650);
+        GraphicsContext gc = c.getGraphicsContext2D();
+        gc.drawImage(pageThree,0,0);
 
         Pane layout = new Pane();
-        layout.getChildren().addAll(prev, next, monthB, sun, mon, tue, wed, thu, fri, sat, year);
+        layout.getChildren().addAll(c, prev, next, monthB, sun, mon, tue, wed, thu, fri, sat, year);
         setDates(cal.get(Calendar.MONTH), cal.get(Calendar.YEAR), layout);
 
         prev.setOnAction(e -> {
@@ -570,19 +581,32 @@ public class Main extends Application {
             cal.add(Calendar.MONTH, -1);
             monthB.setText(monthName[(cal.get(Calendar.MONTH))]);
             year.setText(String.valueOf(cal.get(Calendar.YEAR)));
-            setDates(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), layout);
-            scene8 = new Scene(layout, 1300, 650);
-            window.setScene(scene8);
-
+            try {
+                setDates(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), layout);
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
+            try {
+                createCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
         });
 
         next.setOnAction(e -> {
             cal.add(Calendar.MONTH, 1);
             monthB.setText(monthName[(cal.get(Calendar.MONTH))]);
             year.setText(String.valueOf(cal.get(Calendar.YEAR)));
-            setDates(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), layout);
-            scene8 = new Scene(layout, 1300, 650);
-            window.setScene(scene8);
+            try {
+                setDates(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), layout);
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
+            try {
+                createCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
         });
 
         //Pane layout = new Pane();
@@ -593,20 +617,40 @@ public class Main extends Application {
 
     }
 
-    public void setDates(int month, int year, Pane layout)
-    {
+    public void setDates(int month, int year, Pane layout) throws FileNotFoundException {
         Calendar cal = Calendar.getInstance();
         cal.set(year, month, 1);
         ArrayList<Button> buttonList  = new ArrayList<Button>();
+
+        HolidayCheck obj = new HolidayCheck();
 
         int sunb=360, monb=440, tueb=520, wedb=600, thub=680, frib=760, satb=840;
         int sunby=160, monby=160, tueby=160, wedby=160, thuby=160, friby=160, satby=160;
 
         while (cal.get(Calendar.MONTH) == month){
+
             int day = cal.get(Calendar.DAY_OF_WEEK);
 
             if(day == Calendar.SATURDAY) {
                 Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                String s = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "-" + String.valueOf(cal.get(Calendar.MONTH)+1) + "-" + String.valueOf(cal.get(Calendar.YEAR));
+                if(obj.IsHoliday(s))
+                {
+                    //String str = obj.HolidayName();
+                    button.setStyle("-fx-base: red;");
+                    Label label = new Label(obj.HolidayName());
+                    label.setStyle(" -fx-background-color: white;");
+                    label.setMinWidth(80);
+                    label.setMinHeight(50);
+                    Popup popup = new Popup();
+                    popup.getContent().add(label);
+                    popup.setAutoHide(true);
+                    button.setOnAction(e ->{
+                        if (!popup.isShowing()) {
+                            popup.show(window);
+                        }
+                    });
+                }
                 buttonList.add(button);
                 button.setTranslateX(satb);
                 button.setTranslateY(satby);
@@ -622,6 +666,23 @@ public class Main extends Application {
             else if(day == Calendar.SUNDAY)
             {
                 Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                String s = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "-" + String.valueOf(cal.get(Calendar.MONTH)+1) + "-" + String.valueOf(cal.get(Calendar.YEAR));
+                if(obj.IsHoliday(s))
+                {
+                    button.setStyle("-fx-base: red;");
+                    Label label = new Label(obj.HolidayName());
+                    label.setStyle(" -fx-background-color: white;");
+                    label.setMinWidth(80);
+                    label.setMinHeight(50);
+                    Popup popup = new Popup();
+                    popup.getContent().add(label);
+                    popup.setAutoHide(true);
+                    button.setOnAction(e ->{
+                        if (!popup.isShowing()) {
+                            popup.show(window);
+                        }
+                    });
+                }
                 buttonList.add(button);
                 button.setTranslateX(sunb);
                 button.setTranslateY(sunby);
@@ -630,6 +691,24 @@ public class Main extends Application {
             else if(day == Calendar.MONDAY)
             {
                 Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                String s = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "-" + String.valueOf(cal.get(Calendar.MONTH)+1) + "-" + String.valueOf(cal.get(Calendar.YEAR));
+                if(obj.IsHoliday(s))
+                {
+                    //String str = obj.HolidayName();
+                    button.setStyle("-fx-base: red;");
+                    Label label = new Label(obj.HolidayName());
+                    label.setStyle(" -fx-background-color: white;");
+                    label.setMinWidth(80);
+                    label.setMinHeight(50);
+                    Popup popup = new Popup();
+                    popup.getContent().add(label);
+                    popup.setAutoHide(true);
+                    button.setOnAction(e ->{
+                        if (!popup.isShowing()) {
+                            popup.show(window);
+                        }
+                    });
+                }
                 buttonList.add(button);
                 button.setTranslateX(monb);
                 button.setTranslateY(monby);
@@ -638,6 +717,24 @@ public class Main extends Application {
             else if(day == Calendar.TUESDAY)
             {
                 Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                String s = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "-" + String.valueOf(cal.get(Calendar.MONTH)+1) + "-" + String.valueOf(cal.get(Calendar.YEAR));
+                if(obj.IsHoliday(s))
+                {
+                    //String str = obj.HolidayName();
+                    button.setStyle("-fx-base: red;");
+                    Label label = new Label(obj.HolidayName());
+                    label.setStyle(" -fx-background-color: white;");
+                    label.setMinWidth(80);
+                    label.setMinHeight(50);
+                    Popup popup = new Popup();
+                    popup.getContent().add(label);
+                    popup.setAutoHide(true);
+                    button.setOnAction(e ->{
+                        if (!popup.isShowing()) {
+                            popup.show(window);
+                        }
+                    });
+                }
                 buttonList.add(button);
                 button.setTranslateX(tueb);
                 button.setTranslateY(tueby);
@@ -646,6 +743,24 @@ public class Main extends Application {
             else if(day == Calendar.WEDNESDAY)
             {
                 Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                String s = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "-" + String.valueOf(cal.get(Calendar.MONTH)+1) + "-" + String.valueOf(cal.get(Calendar.YEAR));
+                if(obj.IsHoliday(s))
+                {
+                    //String str = obj.HolidayName();
+                    button.setStyle("-fx-base: red;");
+                    Label label = new Label(obj.HolidayName());
+                    label.setStyle(" -fx-background-color: white;");
+                    label.setMinWidth(80);
+                    label.setMinHeight(50);
+                    Popup popup = new Popup();
+                    popup.getContent().add(label);
+                    popup.setAutoHide(true);
+                    button.setOnAction(e ->{
+                        if (!popup.isShowing()) {
+                            popup.show(window);
+                        }
+                    });
+                }
                 buttonList.add(button);
                 button.setTranslateX(wedb);
                 button.setTranslateY(wedby);
@@ -654,6 +769,24 @@ public class Main extends Application {
             else if(day == Calendar.THURSDAY)
             {
                 Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                String s = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "-" + String.valueOf(cal.get(Calendar.MONTH)+1) + "-" + String.valueOf(cal.get(Calendar.YEAR));
+                if(obj.IsHoliday(s))
+                {
+                    //String str = obj.HolidayName();
+                    button.setStyle("-fx-base: red;");
+                    Label label = new Label(obj.HolidayName());
+                    label.setStyle(" -fx-background-color: white;");
+                    label.setMinWidth(80);
+                    label.setMinHeight(50);
+                    Popup popup = new Popup();
+                    popup.getContent().add(label);
+                    popup.setAutoHide(true);
+                    button.setOnAction(e ->{
+                        if (!popup.isShowing()) {
+                            popup.show(window);
+                        }
+                    });
+                }
                 buttonList.add(button);
                 button.setTranslateX(thub);
                 button.setTranslateY(thuby);
@@ -662,6 +795,12 @@ public class Main extends Application {
             else if(day == Calendar.FRIDAY)
             {
                 Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
+                String s = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "-" + String.valueOf(cal.get(Calendar.MONTH)+1) + "-" + String.valueOf(cal.get(Calendar.YEAR));
+                if(obj.IsHoliday(s))
+                {
+                    String str = obj.HolidayName();
+                    button.setStyle("-fx-base: red;");
+                }
                 buttonList.add(button);
                 button.setTranslateX(frib);
                 button.setTranslateY(friby);
