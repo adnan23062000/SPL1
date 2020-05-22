@@ -1,6 +1,7 @@
 package sample;
 
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,7 +97,17 @@ public class LinearRegression {
 
     public String showEquation()
     {
-        return " Y = " + beta + "X " + "+ " + alpha + "\n";
+        DecimalFormat df = new DecimalFormat("#.##");
+        return " Y = " + df.format(beta) + "X " + "+ " + df.format(alpha) + "\n";
+    }
+
+    public double CGCalc1(double studyHour)
+    {
+        double x = ((this.beta)*studyHour) + alpha;
+        if(x>4)
+            return 4;
+        else
+            return x;
     }
 
     public String CGCalc(double studyHour)
@@ -105,7 +116,10 @@ public class LinearRegression {
         if(x>4)
             return "CG: " + 4;
         else
-            return "CG: " + x;
+        {
+            DecimalFormat df = new DecimalFormat("#.##");
+            return "CG: " + df.format(x);
+        }
     }
 
 

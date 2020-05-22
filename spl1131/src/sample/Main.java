@@ -15,19 +15,26 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Scanner;
 
 public class Main extends Application {
 
     Stage window;
-    Scene scene1, scene2, scene3, scene4, scene5, scene6, scene7, scene8;
+    Scene scene1, scene2, scene3, scene4, scene5, scene6, scene7, scene8, scene9, scene10;
 
     Calendar cal = Calendar.getInstance();
+    public static double[] CGs = new double[3];
 
     public boolean weekend, holiday;
 
@@ -56,21 +63,24 @@ public class Main extends Application {
         button2.setPrefSize(60, 30);
 
         Button createRoutine = new Button("Create Your Routine");
-        createRoutine.setTranslateX(590);
-        createRoutine.setTranslateY(330);
+        createRoutine.setTranslateX(660);
+        createRoutine.setTranslateY(280);
         createRoutine.setPrefSize(150, 70);
+        createRoutine.setStyle("-fx-base: black;");
         createRoutine.setOnAction(e -> regForm());
 
         Button seePreviousData = new Button("See Previous User Data");
-        seePreviousData.setTranslateX(570);
-        seePreviousData.setTranslateY(430);
+        seePreviousData.setTranslateX(645);
+        seePreviousData.setTranslateY(380);
         seePreviousData.setPrefSize(180, 70);
+        seePreviousData.setStyle("-fx-base: black;");
         seePreviousData.setOnAction(e -> GraphMenu());
 
         Button others = new Button("Others");
-        others.setTranslateX(610);
-        others.setTranslateY(530);
+        others.setTranslateX(680);
+        others.setTranslateY(480);
         others.setPrefSize(100, 60);
+        others.setStyle("-fx-base: black;");
         others.setOnAction(e -> {
             try {
                 createCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
@@ -106,7 +116,7 @@ public class Main extends Application {
         Background bg = new Background(bi);
         layout1.setBackground(bg);
 
-        Image pageTwo = new Image("abc.PNG");
+        Image pageTwo = new Image("abc.jpg");
         BackgroundImage b2 = new BackgroundImage(pageTwo,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
@@ -125,22 +135,22 @@ public class Main extends Application {
     {
         Pane layout = new Pane();
 
-        Image pageThree = new Image("pic3.PNG");
+        Image pageThree = new Image("pic3.jpg");
 
         Label label1 = new Label("Name: ");
-        label1.setTranslateX(390);
-        label1.setTranslateY(100);
+        label1.setTranslateX(480);
+        label1.setTranslateY(150);
         TextField name = new TextField();
-        name.setTranslateX(430);
-        name.setTranslateY(100);
+        name.setTranslateX(540);
+        name.setTranslateY(150);
 
         Label label2 = new Label("Password: ");
-        label2.setTranslateX(375);
-        label2.setTranslateY(150);
+        label2.setTranslateX(480);
+        label2.setTranslateY(200);
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Your password");
-        passwordField.setTranslateX(430);
-        passwordField.setTranslateY(150);
+        passwordField.setTranslateX(540);
+        passwordField.setTranslateY(200);
 
         Button button2 = new Button("Back");
         button2.setTranslateX(20);
@@ -149,7 +159,7 @@ public class Main extends Application {
 
         Button create = new Button("Create Profile");
         create.setTranslateX(800);
-        create.setTranslateY(550);
+        create.setTranslateY(510);
         create.setPrefSize(120, 60);
 
 
@@ -186,49 +196,49 @@ public class Main extends Application {
         obj2.AlphaBetaCalc();
 
         Label label1 = new Label("Enter Study Hour:  ");
-        label1.setTranslateX(390);
-        label1.setTranslateY(100);
+        label1.setTranslateX(450);
+        label1.setTranslateY(150);
 
         Label label2 = new Label("Enter Your Marks: ");
-        label2.setTranslateX(390);
-        label2.setTranslateY(200);
+        label2.setTranslateX(450);
+        label2.setTranslateY(250);
 
         Label label3 = new Label("Math ->  ");
-        label3.setTranslateX(390);
-        label3.setTranslateY(230);
+        label3.setTranslateX(450);
+        label3.setTranslateY(280);
 
         Label label4 = new Label("Physics ->  ");
-        label4.setTranslateX(390);
-        label4.setTranslateY(260);
+        label4.setTranslateX(450);
+        label4.setTranslateY(310);
 
         Label label5 = new Label("ICT ->  ");
-        label5.setTranslateX(390);
-        label5.setTranslateY(290);
+        label5.setTranslateX(450);
+        label5.setTranslateY(340);
 
         Label label6 = new Label("Enter Your IQ: ");
-        label6.setTranslateX(390);
-        label6.setTranslateY(380);
+        label6.setTranslateX(450);
+        label6.setTranslateY(430);
 
-        Label label7 = new Label("Enter Your Preferable Study Time");
-        label7.setTranslateX(390);
-        label7.setTranslateY(473);
+        Label label7 = new Label("Enter Your Preferable Study Time: ");
+        label7.setTranslateX(450);
+        label7.setTranslateY(485);
 
         Label label8 = new Label("Do You Study in weekends?  ");
         Label label9 = new Label("Do You Study in Holidays?  ");
-        label8.setTranslateX(390);
-        label8.setTranslateY(500);
-        label9.setTranslateX(390);
-        label9.setTranslateY(540);
+        label8.setTranslateX(450);
+        label8.setTranslateY(520);
+        label9.setTranslateX(450);
+        label9.setTranslateY(560);
 
         TextField textMath = new TextField();
-        textMath.setTranslateX(450);
-        textMath.setTranslateY(230);
+        textMath.setTranslateX(530);
+        textMath.setTranslateY(280);
         TextField textPhy = new TextField();
-        textPhy.setTranslateX(450);
-        textPhy.setTranslateY(260);
+        textPhy.setTranslateX(530);
+        textPhy.setTranslateY(310);
         TextField textICT = new TextField();
-        textICT.setTranslateX(450);
-        textICT.setTranslateY(290);
+        textICT.setTranslateX(530);
+        textICT.setTranslateY(340);
 
         Button submit = new Button("Submit");
         Button markResult = new Button();
@@ -236,26 +246,38 @@ public class Main extends Application {
         Button markResult3 = new Button();
         Button markResult4 = new Button();
         markResult.setTranslateX(800);
-        markResult.setTranslateY(240);
-        markResult.setPrefSize(150, 60);
+        markResult.setTranslateY(300);
+        markResult.setPrefSize(150, 40);
         markResult2.setTranslateX(800);
-        markResult2.setTranslateY(80);
-        markResult2.setPrefSize(150, 60);
+        markResult2.setTranslateY(140);
+        markResult2.setPrefSize(150, 40);
         markResult3.setTranslateX(800);
-        markResult3.setTranslateY(360);
+        markResult3.setTranslateY(420);
         markResult4.setTranslateX(800);
         markResult4.setTranslateY(450);
-        markResult2.setPrefSize(150, 60);
-        markResult3.setPrefSize(150, 60);
-        markResult4.setPrefSize(150, 60);
-        submit.setTranslateX(480);
-        submit.setTranslateY(320);
+        //markResult2.setPrefSize(150, 40);
+        markResult3.setPrefSize(150, 40);
+        markResult4.setPrefSize(150, 40);
+        submit.setTranslateX(600);
+        submit.setTranslateY(380);
+
+        Button cgEstimate = new Button("ENTER");
+        cgEstimate.setTranslateX(1130);
+        cgEstimate.setTranslateY(300);
+        cgEstimate.setPrefSize(80, 80);
+        cgEstimate.setStyle("-fx-base: black;");
+
+        cgEstimate.setOnAction(e ->{
+            cgShow();
+        });
+
 
         submit.setOnAction(e -> {
             double math = Double.parseDouble(textMath.getText());
             double physics = Double.parseDouble(textPhy.getText());
             double ict = Double.parseDouble(textICT.getText());
 
+            CGs[1] = objj.CGCalc22(math, physics, ict);
             markResult.setText(objj.CGCalc2(math, physics, ict));
         });
 
@@ -264,8 +286,8 @@ public class Main extends Application {
         slider.setMinorTickCount(5);
         slider.setShowTickLabels(true);
         slider.setShowTickMarks(true);
-        slider.setTranslateX(550);
-        slider.setTranslateY(100);
+        slider.setTranslateX(560);
+        slider.setTranslateY(150);
 
         slider.valueProperty().addListener(
                 new ChangeListener<Number>() {
@@ -274,6 +296,7 @@ public class Main extends Application {
                                                 observable, Number oldValue, Number newValue)
                     {
                         double value = slider.getValue();
+                        CGs[0] = obj2.CGCalc1(value);
                         markResult2.setText(obj2.CGCalc(value));
                     }
                 });
@@ -281,8 +304,8 @@ public class Main extends Application {
         String st[] = { "120", "130", "140", "150" };
 
         ChoiceBox cbIQ = new ChoiceBox(FXCollections.observableArrayList(st));
-        cbIQ.setTranslateX(480);
-        cbIQ.setTranslateY(380);
+        cbIQ.setTranslateX(550);
+        cbIQ.setTranslateY(425);
         cbIQ.setPrefSize(100, 30);
 
         cbIQ.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
@@ -293,22 +316,26 @@ public class Main extends Application {
                 // set the text for the label to the selected item
                 String x = st[new_value.intValue()];
                 int xx = Integer.parseInt(x);
-                if(xx==120)
-                    markResult3.setText("CG: 3.35");
-                if(xx==130)
-                    markResult3.setText("CG: 3.50");
-                if(xx==140)
-                    markResult3.setText("CG: 3.75");
-                if(xx==150)
-                    markResult3.setText("CG: 4.00");
+                if(xx==120){
+                    CGs[2] = 3.35;
+                    markResult3.setText("CG: 3.35");}
+                if(xx==130){
+                    CGs[2] = 3.50;
+                    markResult3.setText("CG: 3.50");}
+                if(xx==140){
+                    CGs[2] = 3.75;
+                    markResult3.setText("CG: 3.75");}
+                if(xx==150){
+                    CGs[2] = 4.00;
+                    markResult3.setText("CG: 4.00");}
             }
         });
 
         String ab[] = { "Morning", "Noon", "Afternoon", "Evening", "Night" };
 
         ChoiceBox studyTime = new ChoiceBox(FXCollections.observableArrayList(ab));
-        studyTime.setTranslateX(580);
-        studyTime.setTranslateY(470);
+        studyTime.setTranslateX(640);
+        studyTime.setTranslateY(480);
         studyTime.setPrefSize(100, 30);
 
         studyTime.getSelectionModel().selectedIndexProperty().addListener((ov, value, new_value) -> {
@@ -316,7 +343,7 @@ public class Main extends Application {
             String x = ab[new_value.intValue()];
         });
 
-        Image pageThree = new Image("pic3.PNG");
+        Image pageThree = new Image("pic3.jpg");
         Canvas c = new Canvas(1300,650);
         GraphicsContext gc = c.getGraphicsContext2D();
         gc.drawImage(pageThree,0,0);
@@ -327,17 +354,17 @@ public class Main extends Application {
         button2.setPrefSize(60, 30);
 
         RadioButton r1 = new RadioButton("Yes");
-        r1.setTranslateX(580);
-        r1.setTranslateY(500);
+        r1.setTranslateX(610);
+        r1.setTranslateY(520);
         RadioButton r2 = new RadioButton("Yes");
-        r2.setTranslateX(580);
-        r2.setTranslateY(540);
+        r2.setTranslateX(610);
+        r2.setTranslateY(560);
         RadioButton r3 = new RadioButton("No");
-        r3.setTranslateX(620);
-        r3.setTranslateY(500);
+        r3.setTranslateX(670);
+        r3.setTranslateY(520);
         RadioButton r4 = new RadioButton("No");
-        r4.setTranslateX(620);
-        r4.setTranslateY(540);
+        r4.setTranslateX(670);
+        r4.setTranslateY(560);
 
         if(r1.isSelected())
             weekend = true;
@@ -351,16 +378,108 @@ public class Main extends Application {
         System.out.println("\nweekend  " + weekend + "\nHoliday  " + holiday);
 
         Pane layout = new Pane();
-        layout.getChildren().addAll(c, label1, slider, label2, label3, label4, label5, label6, label7, label8, label9, textMath, textPhy, textICT, submit, markResult, markResult2, markResult3, cbIQ, studyTime, r1, r2, r3, r4, button2);
+        layout.getChildren().addAll(c, cgEstimate, label1, slider, label2, label3, label4, label5, label6, label7, label8, label9, textMath, textPhy, textICT, submit, markResult, markResult2, markResult3, cbIQ, studyTime, r1, r2, r3, r4, button2);
 
         button2.setOnAction(e -> window.setScene(scene3));
         scene4 = new Scene(layout, 1300, 650);
         window.setScene(scene4);
     }
 
+    public void cgShow()
+    {
+        Image pageThree = new Image("pic3.jpg");
+        Canvas c = new Canvas(1300,650);
+        GraphicsContext gc = c.getGraphicsContext2D();
+        gc.drawImage(pageThree,0,0);
+
+        Button createRoutine = new Button("Create Routine");
+        createRoutine.setTranslateX(1130);
+        createRoutine.setTranslateY(280);
+        createRoutine.setPrefSize(90, 140);
+        createRoutine.setStyle("-fx-base: black;");
+
+        createRoutine.setOnAction(e -> {
+            try {
+                createCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
+        });
+
+        Button button2 = new Button("Back");
+        button2.setTranslateX(20);
+        button2.setTranslateY(20);
+        button2.setPrefSize(60, 30);
+
+        Label estimation = new Label("Your Estimated CGPA is:");
+        estimation.setTranslateX(480);
+        estimation.setTranslateY(200);
+        //estimation.setStyle(" -fx-background-color: pink;");
+        estimation.setFont(new Font("Algerian", 26));
+        estimation.setMinWidth(100);
+        estimation.setMinHeight(60);
+
+        Label userI = new Label("Enter Your Expected CGPA: ");
+        userI.setFont(new Font("Algerian", 22));
+        userI.setStyle("-fx-text-fill: black");
+        userI.setStyle(" -fx-background-color: cyan;");
+        userI.setTranslateX(480);
+        userI.setTranslateY(350);
+
+        TextField text = new TextField();
+        text.setTranslateX(850);
+        text.setTranslateY(350);
+
+        Button submit = new Button("Submit");
+        submit.setTranslateX(650);
+        submit.setTranslateY(390);
+        submit.setFont(new Font("Ariel", 18));
+        submit.setStyle("-fx-text-fill: black");
+        submit.setStyle(" -fx-background-color: grey;");
+
+        Label label3 = new Label();
+
+        submit.setOnAction(e -> {
+            double value = Double.parseDouble(text.getText());
+            double est = (CGs[0]+CGs[1]+CGs[2])/3;
+            if(Math.abs(value-est)<=.2)
+            {
+                label3.setText("* The Difference is NOT Significant ");
+                label3.setTranslateX(450);
+                label3.setTranslateY(470);
+                label3.setFont(new Font("Bauhaus 93", 36));
+            }
+            else
+            {
+                label3.setText("* The Difference IS Significant ");
+                label3.setTranslateX(450);
+                label3.setTranslateY(470);
+                label3.setFont(new Font("Bauhaus 93", 36));
+            }
+
+        });
+
+        Button eCG = new Button();
+        //eCG.setText(String.valueOf((CGs[0]+CGs[1]+CGs[2])/3));
+        DecimalFormat df = new DecimalFormat("#.##");
+        eCG.setText(df.format((CGs[0]+CGs[1]+CGs[2])/3));
+        eCG.setPrefSize(100, 60);
+        eCG.setFont(new Font("Algerian", 22));
+        eCG.setStyle("-fx-text-fill: black");
+        eCG.setStyle(" -fx-background-color: cyan;");
+        eCG.setTranslateX(850);
+        eCG.setTranslateY(200);
+
+        Pane layout = new Pane();
+        layout.getChildren().addAll(c, button2, estimation, eCG, userI, text, submit, label3, createRoutine);
+
+        scene9 = new Scene(layout, 1300, 650);
+        window.setScene(scene9);
+    }
+
     public void GraphMenu()
     {
-        Image pageThree = new Image("pic3.PNG");
+        Image pageThree = new Image("pic4.jpg");
         Canvas c = new Canvas(1300,650);
         GraphicsContext gc = c.getGraphicsContext2D();
         gc.drawImage(pageThree,0,0);
@@ -441,12 +560,12 @@ public class Main extends Application {
 
         Button eqn = new Button(obj.showEquation());
         eqn.setTranslateX(720);
-        eqn.setTranslateY(40);
-        eqn.setPrefSize(250, 100);
+        eqn.setTranslateY(140);
+        eqn.setPrefSize(200, 100);
 
         Label label1 = new Label("The Equation is: ");
         label1.setTranslateX(720);
-        label1.setTranslateY(20);
+        label1.setTranslateY(100);
 
         layout.getChildren().addAll(scatterChart, label1, eqn, button2);
 
@@ -484,7 +603,7 @@ public class Main extends Application {
 
         Label label1 = new Label("The Equation is: ");
         label1.setTranslateX(720);
-        label1.setTranslateY(20);
+        label1.setTranslateY(100);
 
         MultipleRegression obj2 = new MultipleRegression();
         obj2.multiRegression();
@@ -500,8 +619,8 @@ public class Main extends Application {
 
         Button eqn = new Button(obj2.showEqn());
         eqn.setTranslateX(600);
-        eqn.setTranslateY(50);
-        eqn.setPrefSize(600, 100);
+        eqn.setTranslateY(140);
+        eqn.setPrefSize(400, 100);
 
         Pane layout = new Pane();
         layout.getChildren().addAll(linechart, label1, eqn, button2);
@@ -512,52 +631,72 @@ public class Main extends Application {
     }
 
     public void createCalendar(int year1, int month1) throws FileNotFoundException {
-        Button prev = new Button(" <-- ");
-        prev.setTranslateX(520);
-        prev.setTranslateY(50);
-        Button next = new Button(" --> ");
-        next.setTranslateX(680);
-        next.setTranslateY(50);
-        Button monthB = new Button();
-        monthB.setTranslateX(580);
-        monthB.setTranslateY(50);
-        monthB.setPrefSize(80, 30);
 
-        int sunb=360, monb=440, tueb=520, wedb=600, thub=680, frib=760, satb=840;
+        Button prev = new Button(" <-- ");
+        prev.setTranslateX(750);
+        prev.setTranslateY(110);
+        prev.setPrefSize(50, 30);
+        prev.setStyle(" -fx-background-color: orange;");
+        Button next = new Button(" --> ");
+        next.setTranslateX(920);
+        next.setTranslateY(110);
+        next.setPrefSize(50, 30);
+        next.setStyle(" -fx-background-color: orange;");
+        Button monthB = new Button();
+        monthB.setTranslateX(820);
+        monthB.setTranslateY(110);
+        monthB.setPrefSize(80, 30);
+        monthB.setStyle(" -fx-background-color: orange;");
+
+        int sunb=580, monb=660, tueb=740, wedb=820, thub=900, frib=980, satb=1060;
 
         Button sun = new Button("SUN");
         sun.setTranslateX(sunb);
-        sun.setTranslateY(120);
+        sun.setTranslateY(200);
+        sun.setPrefSize(42, 30);
+        sun.setStyle(" -fx-background-color: pink;");
 
         Button mon = new Button("MON");
         mon.setTranslateX(monb);
-        mon.setTranslateY(120);
+        mon.setTranslateY(200);
+        mon.setPrefSize(46, 30);
+        mon.setStyle(" -fx-background-color: pink;");
 
         Button tue = new Button("TUE");
         tue.setTranslateX(tueb);
-        tue.setTranslateY(120);
+        tue.setTranslateY(200);
+        tue.setPrefSize(42, 30);
+        tue.setStyle(" -fx-background-color: pink;");
 
         Button wed = new Button("WED");
         wed.setTranslateX(wedb);
-        wed.setTranslateY(120);
+        wed.setTranslateY(200);
+        wed.setPrefSize(42, 30);
+        wed.setStyle(" -fx-background-color: pink;");
 
         Button thu = new Button("THU");
         thu.setTranslateX(thub);
-        thu.setTranslateY(120);
+        thu.setTranslateY(200);
+        thu.setPrefSize(42, 30);
+        thu.setStyle(" -fx-background-color: pink;");
 
         Button fri = new Button("FRI");
         fri.setStyle("-fx-base: red;");
         fri.setTranslateX(frib);
-        fri.setTranslateY(120);
+        fri.setTranslateY(200);
+        fri.setPrefSize(42, 30);
 
         Button sat = new Button("SAT");
         sat.setStyle("-fx-base: red;");
         sat.setTranslateX(satb);
-        sat.setTranslateY(120);
+        sat.setTranslateY(200);
+        sat.setPrefSize(42, 30);
 
         Button year = new Button();
-        year.setTranslateX(595);
-        year.setTranslateY(20);
+        year.setTranslateX(830);
+        year.setTranslateY(80);
+        year.setPrefSize(60, 20);
+        year.setStyle(" -fx-background-color: orange;");
 
         String[] monthName = {"January", "February",
                 "March", "April", "May", "June", "July",
@@ -567,7 +706,7 @@ public class Main extends Application {
         monthB.setText(monthName[month1]);
         year.setText(String.valueOf(year1));
 
-        Image pageThree = new Image("pic3.PNG");
+        Image pageThree = new Image("calendar.jpg");
         Canvas c = new Canvas(1300,650);
         GraphicsContext gc = c.getGraphicsContext2D();
         gc.drawImage(pageThree,0,0);
@@ -618,18 +757,28 @@ public class Main extends Application {
     }
 
     public void setDates(int month, int year, Pane layout) throws FileNotFoundException {
+
+        Calendar today = Calendar.getInstance();
+        int yearT = today.get(Calendar.YEAR);
+        int monthT = today.get(Calendar.MONTH);
+        int dayT = today.get(Calendar.DAY_OF_MONTH);
+
+         System.out.println(dayT + " " + monthT + " " + yearT);
+
         Calendar cal = Calendar.getInstance();
         cal.set(year, month, 1);
         ArrayList<Button> buttonList  = new ArrayList<Button>();
 
         HolidayCheck obj = new HolidayCheck();
 
-        int sunb=360, monb=440, tueb=520, wedb=600, thub=680, frib=760, satb=840;
-        int sunby=160, monby=160, tueby=160, wedby=160, thuby=160, friby=160, satby=160;
+        int sunb=580, monb=660, tueb=740, wedb=820, thub=900, frib=980, satb=1060;
+        //int sunb=360, monb=440, tueb=520, wedb=600, thub=680, frib=760, satb=840;
+        int sunby=260, monby=260, tueby=260, wedby=260, thuby=260, friby=260, satby=260;
 
         while (cal.get(Calendar.MONTH) == month){
 
             int day = cal.get(Calendar.DAY_OF_WEEK);
+            int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
 
             if(day == Calendar.SATURDAY) {
                 Button button = new Button(String.valueOf(cal.get(Calendar.DAY_OF_MONTH)));
@@ -637,11 +786,14 @@ public class Main extends Application {
                 if(obj.IsHoliday(s))
                 {
                     //String str = obj.HolidayName();
-                    button.setStyle("-fx-base: red;");
+
                     Label label = new Label(obj.HolidayName());
-                    label.setStyle(" -fx-background-color: white;");
-                    label.setMinWidth(80);
-                    label.setMinHeight(50);
+                    label.setTranslateX(400);
+                    label.setTranslateY(250);
+                    label.setStyle(" -fx-background-color: pink;");
+                    label.setFont(new Font("Arial", 24));
+                    label.setMinWidth(100);
+                    label.setMinHeight(60);
                     Popup popup = new Popup();
                     popup.getContent().add(label);
                     popup.setAutoHide(true);
@@ -654,7 +806,19 @@ public class Main extends Application {
                 buttonList.add(button);
                 button.setTranslateX(satb);
                 button.setTranslateY(satby);
-                button.setStyle("-fx-base: red;");
+                if(dayT==dayOfMonth && monthT==month && yearT==year)
+                {
+                    button.setStyle("-fx-base: cyan;");
+                    button.setOnAction(e -> {
+                        try {
+                            MakeRoutine();
+                        } catch (FileNotFoundException fileNotFoundException) {
+                            fileNotFoundException.printStackTrace();
+                        }
+                    });
+                }
+                else
+                    button.setStyle("-fx-base: red;");
                 satby+=40;
                 sunby+=40;
                 monby+=40;
@@ -669,17 +833,44 @@ public class Main extends Application {
                 String s = String.valueOf(cal.get(Calendar.DAY_OF_MONTH)) + "-" + String.valueOf(cal.get(Calendar.MONTH)+1) + "-" + String.valueOf(cal.get(Calendar.YEAR));
                 if(obj.IsHoliday(s))
                 {
+                    if(dayT==dayOfMonth && monthT==month && yearT==year)
+                {
+                    button.setStyle("-fx-base: cyan;");
+                    button.setOnAction(e -> {
+                        try {
+                            MakeRoutine();
+                        } catch (FileNotFoundException fileNotFoundException) {
+                            fileNotFoundException.printStackTrace();
+                        }
+                    });
+                }
+                else
                     button.setStyle("-fx-base: red;");
-                    Label label = new Label(obj.HolidayName());
-                    label.setStyle(" -fx-background-color: white;");
-                    label.setMinWidth(80);
-                    label.setMinHeight(50);
-                    Popup popup = new Popup();
-                    popup.getContent().add(label);
-                    popup.setAutoHide(true);
-                    button.setOnAction(e ->{
-                        if (!popup.isShowing()) {
+
+                Label label = new Label(obj.HolidayName());
+                label.setStyle(" -fx-background-color: pink;");
+                label.setFont(new Font("Arial", 24));
+                label.setMinWidth(120);
+                label.setMinHeight(70);
+                label.setTranslateX(400);
+                label.setTranslateY(250);
+                Popup popup = new Popup();
+                popup.getContent().add(label);
+                popup.setAutoHide(true);
+                button.setOnAction(e ->{
+                    if (!popup.isShowing()) {
                             popup.show(window);
+                    }
+                    });
+                }
+                if(dayT==dayOfMonth && monthT==month && yearT==year)
+                {
+                    button.setStyle("-fx-base: cyan;");
+                    button.setOnAction(e -> {
+                        try {
+                            MakeRoutine();
+                        } catch (FileNotFoundException fileNotFoundException) {
+                            fileNotFoundException.printStackTrace();
                         }
                     });
                 }
@@ -695,17 +886,43 @@ public class Main extends Application {
                 if(obj.IsHoliday(s))
                 {
                     //String str = obj.HolidayName();
-                    button.setStyle("-fx-base: red;");
+                    if(dayT==dayOfMonth && monthT==month && yearT==year)
+                    {
+                        button.setStyle("-fx-base: blue;");
+                        button.setOnAction(e -> {
+                            try {
+                                MakeRoutine();
+                            } catch (FileNotFoundException fileNotFoundException) {
+                                fileNotFoundException.printStackTrace();
+                            }
+                        });
+                    }
+                    else
+                        button.setStyle("-fx-base: red;");
                     Label label = new Label(obj.HolidayName());
-                    label.setStyle(" -fx-background-color: white;");
-                    label.setMinWidth(80);
-                    label.setMinHeight(50);
+                    label.setStyle(" -fx-background-color: pink;");
+                    label.setFont(new Font("Arial", 24));
+                    label.setMinWidth(120);
+                    label.setMinHeight(70);
+                    label.setTranslateX(400);
+                    label.setTranslateY(250);
                     Popup popup = new Popup();
                     popup.getContent().add(label);
                     popup.setAutoHide(true);
                     button.setOnAction(e ->{
                         if (!popup.isShowing()) {
                             popup.show(window);
+                        }
+                    });
+                }
+                if(dayT==dayOfMonth && monthT==month && yearT==year)
+                {
+                    button.setStyle("-fx-base: cyan;");
+                    button.setOnAction(e -> {
+                        try {
+                            MakeRoutine();
+                        } catch (FileNotFoundException fileNotFoundException) {
+                            fileNotFoundException.printStackTrace();
                         }
                     });
                 }
@@ -721,17 +938,43 @@ public class Main extends Application {
                 if(obj.IsHoliday(s))
                 {
                     //String str = obj.HolidayName();
-                    button.setStyle("-fx-base: red;");
+                    if(dayT==dayOfMonth && monthT==month && yearT==year)
+                    {
+                        button.setStyle("-fx-base: cyan;");
+                        button.setOnAction(e -> {
+                            try {
+                                MakeRoutine();
+                            } catch (FileNotFoundException fileNotFoundException) {
+                                fileNotFoundException.printStackTrace();
+                            }
+                        });
+                    }
+                    else
+                        button.setStyle("-fx-base: red;");
                     Label label = new Label(obj.HolidayName());
-                    label.setStyle(" -fx-background-color: white;");
-                    label.setMinWidth(80);
-                    label.setMinHeight(50);
+                    label.setStyle(" -fx-background-color: pink;");
+                    label.setFont(new Font("Arial", 24));
+                    label.setMinWidth(120);
+                    label.setMinHeight(70);
+                    label.setTranslateX(400);
+                    label.setTranslateY(250);
                     Popup popup = new Popup();
                     popup.getContent().add(label);
                     popup.setAutoHide(true);
                     button.setOnAction(e ->{
                         if (!popup.isShowing()) {
                             popup.show(window);
+                        }
+                    });
+                }
+                if(dayT==dayOfMonth && monthT==month && yearT==year)
+                {
+                    button.setStyle("-fx-base: cyan;");
+                    button.setOnAction(e -> {
+                        try {
+                            MakeRoutine();
+                        } catch (FileNotFoundException fileNotFoundException) {
+                            fileNotFoundException.printStackTrace();
                         }
                     });
                 }
@@ -747,17 +990,43 @@ public class Main extends Application {
                 if(obj.IsHoliday(s))
                 {
                     //String str = obj.HolidayName();
-                    button.setStyle("-fx-base: red;");
+                    if(dayT==dayOfMonth && monthT==month && yearT==year)
+                    {
+                        button.setStyle("-fx-base: cyan;");
+                        button.setOnAction(e -> {
+                            try {
+                                MakeRoutine();
+                            } catch (FileNotFoundException fileNotFoundException) {
+                                fileNotFoundException.printStackTrace();
+                            }
+                        });
+                    }
+                    else
+                        button.setStyle("-fx-base: red;");
                     Label label = new Label(obj.HolidayName());
-                    label.setStyle(" -fx-background-color: white;");
-                    label.setMinWidth(80);
-                    label.setMinHeight(50);
+                    label.setStyle(" -fx-background-color: pink;");
+                    label.setFont(new Font("Arial", 24));
+                    label.setMinWidth(120);
+                    label.setMinHeight(70);
+                    label.setTranslateX(400);
+                    label.setTranslateY(250);
                     Popup popup = new Popup();
                     popup.getContent().add(label);
                     popup.setAutoHide(true);
                     button.setOnAction(e ->{
                         if (!popup.isShowing()) {
                             popup.show(window);
+                        }
+                    });
+                }
+                if(dayT==dayOfMonth && monthT==month && yearT==year)
+                {
+                    button.setStyle("-fx-base: cyan;");
+                    button.setOnAction(e -> {
+                        try {
+                            MakeRoutine();
+                        } catch (FileNotFoundException fileNotFoundException) {
+                            fileNotFoundException.printStackTrace();
                         }
                     });
                 }
@@ -773,17 +1042,43 @@ public class Main extends Application {
                 if(obj.IsHoliday(s))
                 {
                     //String str = obj.HolidayName();
-                    button.setStyle("-fx-base: red;");
+                    if(dayT==dayOfMonth && monthT==month && yearT==year)
+                    {
+                        button.setStyle("-fx-base: cyan;");
+                        button.setOnAction(e -> {
+                            try {
+                                MakeRoutine();
+                            } catch (FileNotFoundException fileNotFoundException) {
+                                fileNotFoundException.printStackTrace();
+                            }
+                        });
+                    }
+                    else
+                        button.setStyle("-fx-base: red;");
                     Label label = new Label(obj.HolidayName());
-                    label.setStyle(" -fx-background-color: white;");
-                    label.setMinWidth(80);
-                    label.setMinHeight(50);
+                    label.setStyle(" -fx-background-color: pink;");
+                    label.setFont(new Font("Arial", 24));
+                    label.setMinWidth(120);
+                    label.setMinHeight(70);
+                    label.setTranslateX(400);
+                    label.setTranslateY(250);
                     Popup popup = new Popup();
                     popup.getContent().add(label);
                     popup.setAutoHide(true);
                     button.setOnAction(e ->{
                         if (!popup.isShowing()) {
                             popup.show(window);
+                        }
+                    });
+                }
+                if(dayT==dayOfMonth && monthT==month && yearT==year)
+                {
+                    button.setStyle("-fx-base: cyan;");
+                    button.setOnAction(e -> {
+                        try {
+                            MakeRoutine();
+                        } catch (FileNotFoundException fileNotFoundException) {
+                            fileNotFoundException.printStackTrace();
                         }
                     });
                 }
@@ -799,12 +1094,36 @@ public class Main extends Application {
                 if(obj.IsHoliday(s))
                 {
                     String str = obj.HolidayName();
-                    button.setStyle("-fx-base: red;");
+                    if(dayT==dayOfMonth && monthT==month && yearT==year)
+                    {
+                        button.setStyle("-fx-base: cyan;");
+                        button.setOnAction(e -> {
+                            try {
+                                MakeRoutine();
+                            } catch (FileNotFoundException fileNotFoundException) {
+                                fileNotFoundException.printStackTrace();
+                            }
+                        });
+                    }
+                    else
+                        button.setStyle("-fx-base: red;");
                 }
+                if(dayT==dayOfMonth && monthT==month && yearT==year)
+                {
+                    button.setStyle("-fx-base: cyan;");
+                    button.setOnAction(e -> {
+                        try {
+                            MakeRoutine();
+                        } catch (FileNotFoundException fileNotFoundException) {
+                            fileNotFoundException.printStackTrace();
+                        }
+                    });
+                }
+                else
+                    button.setStyle("-fx-base: red;");
                 buttonList.add(button);
                 button.setTranslateX(frib);
                 button.setTranslateY(friby);
-                button.setStyle("-fx-base: red;");
                 //friby+=40;
             }
 
@@ -815,9 +1134,67 @@ public class Main extends Application {
         buttonList.forEach(value -> {
             layout.getChildren().add(value);
         });
+    }
 
+    public void MakeRoutine() throws FileNotFoundException {
 
+        //ClassRoutine obj = new ClassRoutine();
 
+        Image pageThree = new Image("pic3.jpg");
+        Canvas c = new Canvas(1300,650);
+        GraphicsContext gc = c.getGraphicsContext2D();
+        gc.drawImage(pageThree,0,0);
+
+        Button routine = new Button("ROUTINE");
+        routine.setTranslateX(620);
+        routine.setTranslateY(120);
+        routine.setFont(new Font("Ariel", 30));
+        routine.setStyle("-fx-text-fill: black");
+        routine.setStyle(" -fx-background-color: grey;");
+
+        //Button[] b = new Button[3];
+        Button b1 = new Button();
+        Button b2 = new Button();
+        Button b3 = new Button();
+
+        File file = new File("D:\\newfolder\\classRoutine.txt");
+        Scanner scanner = new Scanner(file);
+
+        String[] ara = new String[3];
+
+        while (scanner.hasNextLine()) {
+
+            String[] elements = scanner.nextLine().split("->", 0);
+            int dayToday = Integer.parseInt(elements[0]);
+            String sub1 = elements[1];
+            String sub2 = elements[2];
+            String sub3 = elements[3];
+
+            LocalDate date = LocalDate.now();
+            DayOfWeek day = DayOfWeek.from(date);
+
+            int val = day.getValue();
+
+            if (val == dayToday) {
+                b1.setText(elements[1]);
+                b2.setText(elements[2]);
+                b3.setText(elements[3]);
+
+                break;
+            }
+        }
+
+        b1.setTranslateX(500);
+        b1.setTranslateY(200);
+        b2.setTranslateX(500);
+        b2.setTranslateY(270);
+        b3.setTranslateX(500);
+        b3.setTranslateY(320);
+
+        Pane layout = new Pane();
+        layout.getChildren().addAll(c, routine, b1, b2, b3);
+        scene10 = new Scene(layout, 1300, 650);
+        window.setScene(scene10);
     }
 
     public static void main(String[] args) {

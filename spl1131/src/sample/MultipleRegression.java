@@ -1,6 +1,7 @@
 package sample;
 
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -220,7 +221,8 @@ public class MultipleRegression {
 
     public String showEqn()
     {
-        return " Y = " + array[0][0] + " + " + array[1][0] + " X1  +  " + array[2][0] + " X2  +  " + array[3][0] + " X3\n\n";
+        DecimalFormat df = new DecimalFormat("#.##");
+        return " Y = " + df.format(array[0][0]) + " + " + df.format(array[1][0]) + " X1  +  " + df.format(array[2][0]) + " X2  +  " + df.format(array[3][0]) + " X3\n\n";
     }
 
     public String CGCalc2(double math, double physics, double ict)
@@ -229,7 +231,21 @@ public class MultipleRegression {
         if(x>4)
             return "CG: " + 4;
         else
-            return "CG: " + x;
+        {
+            DecimalFormat df = new DecimalFormat("#.##");
+            return "CG: " + df.format(x);
+        }
+    }
+
+    public double CGCalc22(double math, double physics, double ict)
+    {
+        double x = ((this.array[0][0])+(this.array[1][0]*math)+(this.array[2][0]*physics)+(this.array[3][0]*ict));
+        if(x>4)
+            return 4;
+        else
+        {
+            return x;
+        }
     }
 
 }
