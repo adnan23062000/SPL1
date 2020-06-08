@@ -31,7 +31,7 @@ import java.util.Scanner;
 public class Main extends Application {
 
     Stage window;
-    Scene scene1, scene2, scene3, scene4, scene5, scene6, scene7, scene8, scene9, scene10;
+    Scene scene1, scene2, scene3, scene4, scene5, scene6, scene7, scene8, scene9, scene10, scene11;
 
     Calendar cal = Calendar.getInstance();
     public static double[] CGs = new double[3];
@@ -1184,17 +1184,71 @@ public class Main extends Application {
             }
         }
 
+        Button t1 = new Button();
+        Button t2 = new Button();
+        Button t3 = new Button();
+
+
         b1.setTranslateX(500);
+        t1.setTranslateX(750);
         b1.setTranslateY(200);
+        t1.setTranslateY(200);
         b2.setTranslateX(500);
+        t2.setTranslateX(750);
         b2.setTranslateY(270);
+        t2.setTranslateY(270);
         b3.setTranslateX(500);
+        t3.setTranslateX(750);
         b3.setTranslateY(320);
+        t3.setTranslateY(320);
 
         Pane layout = new Pane();
-        layout.getChildren().addAll(c, routine, b1, b2, b3);
+        layout.getChildren().addAll(c, routine, b1, b2, b3, t1, t2, t3);
         scene10 = new Scene(layout, 1300, 650);
         window.setScene(scene10);
+    }
+
+    public void ExtraSubject(int n)
+    {
+        Image pageThree = new Image("pic3.jpg");
+        Canvas c = new Canvas(1300,650);
+        GraphicsContext gc = c.getGraphicsContext2D();
+        gc.drawImage(pageThree,0,0);
+
+        Label label1 = new Label();
+        label1.setStyle(" -fx-background-color: grey;");
+        label1.setFont(new Font("Arial", 24));
+        label1.setMinWidth(120);
+        label1.setMinHeight(70);
+        label1.setTranslateX(400);
+        label1.setTranslateY(250);
+
+        Button b1 = new Button();
+        b1.setText("YES");
+        Button b2 = new Button("NO");
+        b1.setTranslateX(140);
+        b1.setTranslateY(100);
+        b2.setTranslateX(170);
+        b2.setTranslateY(100);
+        if(n==1)
+        {
+            label1.setText("You have had only 2 classes today.\nDo you want to study another subject today?");
+        }
+
+        if(n==2)
+        {
+            label1.setText("Do you want to study any extra subjects today?");
+        }
+
+        b1.setOnAction(e -> {
+
+        });
+
+        Pane layout = new Pane();
+        layout.getChildren().addAll(c, label1, b1, b2);
+        scene11 = new Scene(layout, 1300, 650);
+        window.setScene(scene11);
+
     }
 
     public static void main(String[] args) {
