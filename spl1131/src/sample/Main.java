@@ -223,13 +223,6 @@ public class Main extends Application {
         label7.setTranslateX(450);
         label7.setTranslateY(485);
 
-        Label label8 = new Label("Do You Study in weekends?  ");
-        Label label9 = new Label("Do You Study in Holidays?  ");
-        label8.setTranslateX(450);
-        label8.setTranslateY(520);
-        label9.setTranslateX(450);
-        label9.setTranslateY(560);
-
         TextField textMath = new TextField();
         textMath.setTranslateX(530);
         textMath.setTranslateY(280);
@@ -353,32 +346,10 @@ public class Main extends Application {
         button2.setTranslateY(20);
         button2.setPrefSize(60, 30);
 
-        RadioButton r1 = new RadioButton("Yes");
-        r1.setTranslateX(610);
-        r1.setTranslateY(520);
-        RadioButton r2 = new RadioButton("Yes");
-        r2.setTranslateX(610);
-        r2.setTranslateY(560);
-        RadioButton r3 = new RadioButton("No");
-        r3.setTranslateX(670);
-        r3.setTranslateY(520);
-        RadioButton r4 = new RadioButton("No");
-        r4.setTranslateX(670);
-        r4.setTranslateY(560);
-
-        if(r1.isSelected())
-            weekend = true;
-        if(r2.isSelected())
-            holiday = true;
-        if(r3.isSelected())
-            weekend = false;
-        if(r4.isSelected())
-            holiday = false;
-
         System.out.println("\nweekend  " + weekend + "\nHoliday  " + holiday);
 
         Pane layout = new Pane();
-        layout.getChildren().addAll(c, cgEstimate, label1, slider, label2, label3, label4, label5, label6, label7, label8, label9, textMath, textPhy, textICT, submit, markResult, markResult2, markResult3, cbIQ, studyTime, r1, r2, r3, r4, button2);
+        layout.getChildren().addAll(c, cgEstimate, label1, slider, label2, label3, label4, label5, label6, label7, textMath, textPhy, textICT, submit, markResult, markResult2, markResult3, cbIQ, studyTime, button2);
 
         button2.setOnAction(e -> window.setScene(scene3));
         scene4 = new Scene(layout, 1300, 650);
@@ -811,7 +782,7 @@ public class Main extends Application {
                     button.setStyle("-fx-base: cyan;");
                     button.setOnAction(e -> {
                         try {
-                            MakeRoutine();
+                            ExtraSubject(2);
                         } catch (FileNotFoundException fileNotFoundException) {
                             fileNotFoundException.printStackTrace();
                         }
@@ -838,7 +809,7 @@ public class Main extends Application {
                     button.setStyle("-fx-base: cyan;");
                     button.setOnAction(e -> {
                         try {
-                            MakeRoutine();
+                            ExtraSubject(1);
                         } catch (FileNotFoundException fileNotFoundException) {
                             fileNotFoundException.printStackTrace();
                         }
@@ -868,7 +839,7 @@ public class Main extends Application {
                     button.setStyle("-fx-base: cyan;");
                     button.setOnAction(e -> {
                         try {
-                            MakeRoutine();
+                            ExtraSubject(2);
                         } catch (FileNotFoundException fileNotFoundException) {
                             fileNotFoundException.printStackTrace();
                         }
@@ -891,7 +862,7 @@ public class Main extends Application {
                         button.setStyle("-fx-base: blue;");
                         button.setOnAction(e -> {
                             try {
-                                MakeRoutine();
+                                ExtraSubject(2);
                             } catch (FileNotFoundException fileNotFoundException) {
                                 fileNotFoundException.printStackTrace();
                             }
@@ -920,7 +891,7 @@ public class Main extends Application {
                     button.setStyle("-fx-base: cyan;");
                     button.setOnAction(e -> {
                         try {
-                            MakeRoutine();
+                            ExtraSubject(2);
                         } catch (FileNotFoundException fileNotFoundException) {
                             fileNotFoundException.printStackTrace();
                         }
@@ -943,7 +914,7 @@ public class Main extends Application {
                         button.setStyle("-fx-base: cyan;");
                         button.setOnAction(e -> {
                             try {
-                                MakeRoutine();
+                                ExtraSubject(2);
                             } catch (FileNotFoundException fileNotFoundException) {
                                 fileNotFoundException.printStackTrace();
                             }
@@ -972,7 +943,7 @@ public class Main extends Application {
                     button.setStyle("-fx-base: cyan;");
                     button.setOnAction(e -> {
                         try {
-                            MakeRoutine();
+                            ExtraSubject(2);
                         } catch (FileNotFoundException fileNotFoundException) {
                             fileNotFoundException.printStackTrace();
                         }
@@ -995,7 +966,7 @@ public class Main extends Application {
                         button.setStyle("-fx-base: cyan;");
                         button.setOnAction(e -> {
                             try {
-                                MakeRoutine();
+                                ExtraSubject(2);
                             } catch (FileNotFoundException fileNotFoundException) {
                                 fileNotFoundException.printStackTrace();
                             }
@@ -1024,7 +995,7 @@ public class Main extends Application {
                     button.setStyle("-fx-base: cyan;");
                     button.setOnAction(e -> {
                         try {
-                            MakeRoutine();
+                            ExtraSubject(2);
                         } catch (FileNotFoundException fileNotFoundException) {
                             fileNotFoundException.printStackTrace();
                         }
@@ -1047,7 +1018,7 @@ public class Main extends Application {
                         button.setStyle("-fx-base: cyan;");
                         button.setOnAction(e -> {
                             try {
-                                MakeRoutine();
+                                ExtraSubject(2);
                             } catch (FileNotFoundException fileNotFoundException) {
                                 fileNotFoundException.printStackTrace();
                             }
@@ -1076,7 +1047,7 @@ public class Main extends Application {
                     button.setStyle("-fx-base: cyan;");
                     button.setOnAction(e -> {
                         try {
-                            MakeRoutine();
+                            ExtraSubject(2);
                         } catch (FileNotFoundException fileNotFoundException) {
                             fileNotFoundException.printStackTrace();
                         }
@@ -1099,7 +1070,7 @@ public class Main extends Application {
                         button.setStyle("-fx-base: cyan;");
                         button.setOnAction(e -> {
                             try {
-                                MakeRoutine();
+                                ExtraSubject(2);
                             } catch (FileNotFoundException fileNotFoundException) {
                                 fileNotFoundException.printStackTrace();
                             }
@@ -1107,13 +1078,28 @@ public class Main extends Application {
                     }
                     else
                         button.setStyle("-fx-base: red;");
+                    Label label = new Label(obj.HolidayName());
+                    label.setStyle(" -fx-background-color: pink;");
+                    label.setFont(new Font("Arial", 24));
+                    label.setMinWidth(120);
+                    label.setMinHeight(70);
+                    label.setTranslateX(400);
+                    label.setTranslateY(250);
+                    Popup popup = new Popup();
+                    popup.getContent().add(label);
+                    popup.setAutoHide(true);
+                    button.setOnAction(e ->{
+                        if (!popup.isShowing()) {
+                            popup.show(window);
+                        }
+                    });
                 }
                 if(dayT==dayOfMonth && monthT==month && yearT==year)
                 {
                     button.setStyle("-fx-base: cyan;");
                     button.setOnAction(e -> {
                         try {
-                            MakeRoutine();
+                            ExtraSubject(2);
                         } catch (FileNotFoundException fileNotFoundException) {
                             fileNotFoundException.printStackTrace();
                         }
@@ -1136,9 +1122,9 @@ public class Main extends Application {
         });
     }
 
-    public void MakeRoutine() throws FileNotFoundException {
+    public void MakeRoutine(String[] Rsubjects, ArrayList<String> Esub) throws FileNotFoundException {
 
-        //ClassRoutine obj = new ClassRoutine();
+        Pane layout = new Pane();
 
         Image pageThree = new Image("pic3.jpg");
         Canvas c = new Canvas(1300,650);
@@ -1152,23 +1138,69 @@ public class Main extends Application {
         routine.setStyle("-fx-text-fill: black");
         routine.setStyle(" -fx-background-color: grey;");
 
-        //Button[] b = new Button[3];
-        Button b1 = new Button();
-        Button b2 = new Button();
-        Button b3 = new Button();
+        layout.getChildren().addAll(c, routine);
+
+        for(int j=0;j<3;j++)
+            System.out.println(Rsubjects[j]);
+
+        ArrayList<Button> buttonList = new ArrayList<Button>();
+        int yy=200;
+        for(int i=0;i<3;i++)
+        {
+            if(Rsubjects[i].equals("null"))
+                continue;
+
+            Button b = new Button("#" + Rsubjects[i]);
+            b.setTranslateX(500);
+            b.setTranslateY(yy);
+            b.setFont(new Font("Rockwell Extra Bold", 18));
+            b.setStyle("-fx-text-fill: black");
+            b.setStyle(" -fx-background-color: mediumspringgreen;");
+            yy+=60;
+
+            buttonList.add(b);
+
+        }
+
+        for(int i = 0; i < Esub.size(); i++) {
+            Button b2 = new Button("#"+Esub.get(i));
+            b2.setTranslateX(500);
+            b2.setTranslateY(yy);
+            b2.setFont(new Font("Rockwell Extra Bold", 18));
+            b2.setStyle("-fx-text-fill: black");
+            b2.setStyle(" -fx-background-color: mediumspringgreen;");
+            yy+=60;
+
+            buttonList.add(b2);
+        }
+
+        buttonList.forEach(value -> {
+            layout.getChildren().add(value);
+        });
+
+
+
+        Button t1 = new Button();
+        Button t2 = new Button();
+        Button t3 = new Button();
+
+
+
+        //layout.getChildren().addAll(c, routine, t1, t2, t3);
+        scene10 = new Scene(layout, 1300, 650);
+        window.setScene(scene10);
+    }
+
+    public void ExtraSubject (int n) throws FileNotFoundException {
 
         File file = new File("D:\\newfolder\\classRoutine.txt");
         Scanner scanner = new Scanner(file);
+        String[] str = new String[3];
 
-        String[] ara = new String[3];
-
-        while (scanner.hasNextLine()) {
-
+        while (scanner.hasNextLine())
+        {
             String[] elements = scanner.nextLine().split("->", 0);
             int dayToday = Integer.parseInt(elements[0]);
-            String sub1 = elements[1];
-            String sub2 = elements[2];
-            String sub3 = elements[3];
 
             LocalDate date = LocalDate.now();
             DayOfWeek day = DayOfWeek.from(date);
@@ -1176,80 +1208,124 @@ public class Main extends Application {
             int val = day.getValue();
 
             if (val == dayToday) {
-                b1.setText(elements[1]);
-                b2.setText(elements[2]);
-                b3.setText(elements[3]);
-
+                str[0]=elements[1];
+                str[1]=elements[2];
+                str[2]=elements[3];
                 break;
             }
         }
 
-        Button t1 = new Button();
-        Button t2 = new Button();
-        Button t3 = new Button();
-
-
-        b1.setTranslateX(500);
-        t1.setTranslateX(750);
-        b1.setTranslateY(200);
-        t1.setTranslateY(200);
-        b2.setTranslateX(500);
-        t2.setTranslateX(750);
-        b2.setTranslateY(270);
-        t2.setTranslateY(270);
-        b3.setTranslateX(500);
-        t3.setTranslateX(750);
-        b3.setTranslateY(320);
-        t3.setTranslateY(320);
-
         Pane layout = new Pane();
-        layout.getChildren().addAll(c, routine, b1, b2, b3, t1, t2, t3);
-        scene10 = new Scene(layout, 1300, 650);
-        window.setScene(scene10);
-    }
 
-    public void ExtraSubject(int n)
-    {
         Image pageThree = new Image("pic3.jpg");
         Canvas c = new Canvas(1300,650);
         GraphicsContext gc = c.getGraphicsContext2D();
         gc.drawImage(pageThree,0,0);
 
         Label label1 = new Label();
-        label1.setStyle(" -fx-background-color: grey;");
-        label1.setFont(new Font("Arial", 24));
+        //label1.setStyle(" -fx-background-color: Orange;");
+        label1.setFont(new Font("Rockwell Extra Bold", 20));
         label1.setMinWidth(120);
         label1.setMinHeight(70);
-        label1.setTranslateX(400);
-        label1.setTranslateY(250);
+        label1.setTranslateX(460);
+        label1.setTranslateY(150);
 
         Button b1 = new Button();
         b1.setText("YES");
         Button b2 = new Button("NO");
-        b1.setTranslateX(140);
-        b1.setTranslateY(100);
-        b2.setTranslateX(170);
-        b2.setTranslateY(100);
+        b1.setTranslateX(550);
+        b1.setTranslateY(230);
+        b2.setTranslateX(650);
+        b2.setTranslateY(230);
+        b1.setPrefHeight(30);
+        b1.setPrefWidth(80);
+        b2.setPrefHeight(30);
+        b2.setPrefWidth(80);
+
         if(n==1)
         {
-            label1.setText("You have had only 2 classes today.\nDo you want to study another subject today?");
+            label1.setText("Today is a holiday.\nDo you want to study today?");
         }
 
         if(n==2)
         {
-            label1.setText("Do you want to study any extra subjects today?");
+            label1.setText("#Do you want to study any extra subjects\napart from your class routine today?");
         }
+
+        HolidayCheck11 obj = new HolidayCheck11();
+
+        ArrayList<String> Esub = new ArrayList<>();
 
         b1.setOnAction(e -> {
 
+            Label l = new Label("#Select from the available Subjects:");
+            l.setFont(new Font("Rockwell Extra Bold", 20));
+            l.setTranslateX(460);
+            l.setTranslateY(300);
+            layout.getChildren().add(l);
+            String[] ara = new String[]{"Introduction to Structured Programming", "Discrete Mathematics", "Calculus and Analytical Geometry", "Probability and Statistics", "Sociology", "Introduction to Software Engineering"};
+
+            ArrayList<Button> buttonList = new ArrayList<Button>();
+            int x = 460;
+            int y = 350;
+            for (int i = 0; i < 6; i++) {
+
+                if (str[0].equals(ara[i]))
+                    continue;
+                if (str[1].equals(ara[i]))
+                    continue;
+                if (str[2].equals(ara[i]))
+                    continue;
+
+
+                Button b = new Button(ara[i]);
+                String s = ara[i];
+                b.setFont(new Font("Rockwell Extra Bold", 18));
+                b.setStyle("-fx-text-fill: black");
+                b.setStyle(" -fx-background-color: powderblue;");
+                b.setTranslateX(x);
+                b.setTranslateY(y);
+                y += 40;
+
+                b.setOnAction(E -> {
+                    Esub.add(s);
+                });
+
+                layout.getChildren().add(b);
+            }
+
+            buttonList.forEach(value -> {
+                layout.getChildren().add(value);
+            });
         });
 
-        Pane layout = new Pane();
-        layout.getChildren().addAll(c, label1, b1, b2);
+        b2.setOnAction(e -> {
+            try {
+                MakeRoutine(str, Esub);
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
+        });
+
+        Button done = new Button("Create\nRoutine");
+        done.setTranslateX(920);
+        done.setTranslateY(520);
+        done.setStyle(" -fx-background-color: grey;");
+
+        done.setOnAction(E -> {
+            try {
+                MakeRoutine(str, Esub);
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            }
+        });
+
+        layout.getChildren().addAll(c, label1, b1, b2, done);
         scene11 = new Scene(layout, 1300, 650);
         window.setScene(scene11);
-
     }
+
+
 
     public static void main(String[] args) {
         launch(args);
