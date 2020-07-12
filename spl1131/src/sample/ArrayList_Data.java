@@ -3,15 +3,21 @@ package sample;
 public class ArrayList_Data {
 
     private String name;
-    private double math, physics, ict, studyHour, gpa;
+    private double math, physics, ict, studyHour, gpa, cse101, discrete, calculus, sociology, se, stat;
 
-    public ArrayList_Data(String name, double math, double physics, double ict, double studyHour, double gpa) {
+    public ArrayList_Data(String name, double math, double physics, double ict, double studyHour, double gpa, double cse101, double discrete, double calculus, double stat, double sociology, double se) {
         this.name = name;
         this.math = math;
         this.physics = physics;
         this.ict = ict;
         this.studyHour = studyHour;
         this.gpa = gpa;
+        this.cse101 = cse101;
+        this.discrete = discrete;
+        this.calculus = calculus;
+        this.stat = stat;
+        this.sociology = sociology;
+        this.se = se;
     }
 
     public String getName() {
@@ -38,6 +44,8 @@ public class ArrayList_Data {
         this.physics = physics;
     }
 
+
+
     public double getIct() {
         return ict;
     }
@@ -62,6 +70,29 @@ public class ArrayList_Data {
         this.gpa = gpa;
     }
 
-
+    public double getCSE101()
+    {
+        return this.cse101;
+    }
+    public double getDiscrete()
+    {
+        return this.discrete;
+    }
+    public double getCalculus()
+    {
+        return this.calculus;
+    }
+    public double getStat()
+    {
+        return this.stat;
+    }
+    public double getSociology()
+    {
+        return this.sociology;
+    }
+    public double getSe()
+    {
+        return this.se;
+    }
 
 }

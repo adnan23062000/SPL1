@@ -50,12 +50,12 @@ public class MultipleRegression {
             y[i][0] = CG.get(i);
         }
 
-        for (int i = 0; i < obj2.list.size(); i++) {
+        /*for (int i = 0; i < obj2.list.size(); i++) {
             for (int j = 0; j < 4; j++) {
                 System.out.print(x[i][j] + " ");
             }
             System.out.print("\n");
-        }
+        }*/
 
         Matrix(x, y, obj2.list.size());
 
@@ -69,12 +69,12 @@ public class MultipleRegression {
                 transpose[j][i] = ara[i][j];
             }
         }
-        for (int j = 0; j < 4; j++) {
+        /*for (int j = 0; j < 4; j++) {
             for (int i = 0; i < size; i++) {
                 System.out.print(transpose[j][i] + " ");
             }
             System.out.print("\n");
-        }
+        }*/
 
         Multiply1(ara, transpose, y, 4, 4, 3);
 
@@ -105,13 +105,13 @@ public class MultipleRegression {
             }
         }
 
-        System.out.print("\n\n");
-        for (int i = 0; i < row; i++) {
+        //System.out.print("\n\n");
+        /*for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++)
                 System.out.print(multiply[i][j] + " ");
 
             System.out.print("\n");
-        }
+        }*/
 
         return multiply;
     }
@@ -120,13 +120,13 @@ public class MultipleRegression {
 
         double d[][] = invert(a);
 
-        System.out.println("The inverse is: ");
+        /*System.out.println("The inverse is: ");
         for (int i = 0; i < row; ++i) {
             for (int j = 0; j < column; ++j) {
                 System.out.print(d[i][j] + "  ");
             }
             System.out.println();
-        }
+        }*/
 
         return d;
     }

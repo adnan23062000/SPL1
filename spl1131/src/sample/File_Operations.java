@@ -11,7 +11,7 @@ public class File_Operations {
 
     public void File_Subjects()throws FileNotFoundException
     {
-        File file = new File("D:\\newfolder\\file.txt");
+        File file = new File("D:\\newfolder\\data.txt");
         Scanner scanner = new Scanner(file);
 
         //ArrayList<ArrayList_Data> list = new ArrayList<>();
@@ -25,8 +25,13 @@ public class File_Operations {
             double ict=Double.parseDouble(elements[3]);
             double studyHour = Double.parseDouble(elements[4]);
             double gpa = Double.parseDouble(elements[5]);
-
-            ArrayList_Data ob = new ArrayList_Data(name,math,phy,ict,studyHour,gpa);
+            double cse101 = Double.parseDouble(elements[6]);
+            double discrete = Double.parseDouble(elements[7]);
+            double calculus = Double.parseDouble(elements[8]);
+            double stat = Double.parseDouble(elements[9]);
+            double sociology = Double.parseDouble(elements[10]);
+            double se = Double.parseDouble(elements[11]);
+            ArrayList_Data ob = new ArrayList_Data(name,math,phy,ict,studyHour,gpa,cse101,discrete,calculus,stat,sociology,se);
 
             list.add(ob);
         }
