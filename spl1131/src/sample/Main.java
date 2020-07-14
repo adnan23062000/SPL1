@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class Main extends Application {
 
     Stage window;
     Scene scene1, scene2, scene3, scene4, scene5, scene6, scene7, scene8, scene9, scene10, scene11, scene12;
-    String start, end;
+    String start, end, prefTime;
 
     Calendar cal = Calendar.getInstance();
     public static double[] CGs = new double[3];
@@ -334,7 +335,7 @@ public class Main extends Application {
 
         studyTime.getSelectionModel().selectedIndexProperty().addListener((ov, value, new_value) -> {
             // set the text for the label to the selected item
-            String x = ab[new_value.intValue()];
+            prefTime = ab[new_value.intValue()];
         });
 
         Image pageThree = new Image("pic3.jpg");
@@ -1290,10 +1291,13 @@ public class Main extends Application {
         });
     }
 
-    public void MakeRoutine(String[] Rsubjects, ArrayList<String> Esub) throws FileNotFoundException {
+    public void MakeRoutine(String[] Rsubjects, ArrayList<String> Esub) throws FileNotFoundException, ParseException {
+
+        String prevTime="null", finTime="null";
 
         Pane layout = new Pane();
         DateToInt ob  = new DateToInt();
+        ClockTime ob2 = new ClockTime();
 
         Image pageThree = new Image("pic3.jpg");
         Canvas c = new Canvas(1300,650);
@@ -1337,8 +1341,28 @@ public class Main extends Application {
             double day = ob.Days(start, end);
             DecimalFormat df = new DecimalFormat("#.##");
 
-            Button b = new Button("#" + Rsubjects[i] + "\nDuration: " + df.format(duration/day) + "hr");
+            double dur_day = duration/day;
+
+            if(i==0)
+            {
+                if(prefTime.equals("Morning"))
+                    prevTime = "9:00";
+                else if (prefTime.equals("Noon"))
+                    prevTime = "14:00";
+                else if (prefTime.equals("Afternoon"))
+                    prevTime = "16:00";
+                else if(prefTime.equals("Evening"))
+                    prevTime = "18:30";
+                else if(prefTime.equals("Night"))
+                    prevTime = "20:30";
+            }
+
+            finTime = ob2.Clock(prefTime, Double.toString(dur_day), prevTime);
+
+            Button b = new Button("#" + Rsubjects[i] + "\nDuration: " + df.format(dur_day) + "hr" + "      Start: " + prevTime + "    End: " + finTime);
             //System.out.println(t+":"+min);
+            prevTime = finTime;
+
 
             b.setTranslateX(500);
             b.setTranslateY(yy);
@@ -1370,9 +1394,13 @@ public class Main extends Application {
             double duration = time.TimePeriod(len, (CGs[0]+CGs[1]+CGs[2])/3);
             double day = ob.Days(start, end);
             DecimalFormat df = new DecimalFormat("#.##");
+            double dur_day = duration/day;
 
-            Button b2 = new Button("#"+Esub.get(i)+"\nDuration: "+df.format(duration/day) + "hr");
+            finTime = ob2.Clock(prefTime, Double.toString(dur_day), prevTime);
 
+            Button b2 = new Button("#"+Esub.get(i)+"\nDuration: "+df.format(dur_day) + "hr" + "     Start:" + prevTime + "   End: " + finTime);
+
+            prevTime = finTime;
 
             b2.setTranslateX(500);
             b2.setTranslateY(yy);
@@ -1511,7 +1539,7 @@ public class Main extends Application {
         b2.setOnAction(e -> {
             try {
                 MakeRoutine(str, Esub);
-            } catch (FileNotFoundException fileNotFoundException) {
+            } catch (FileNotFoundException | ParseException fileNotFoundException) {
                 fileNotFoundException.printStackTrace();
             }
         });
@@ -1524,7 +1552,7 @@ public class Main extends Application {
         done.setOnAction(E -> {
             try {
                 MakeRoutine(str, Esub);
-            } catch (FileNotFoundException fileNotFoundException) {
+            } catch (FileNotFoundException | ParseException fileNotFoundException) {
                 fileNotFoundException.printStackTrace();
             }
         });
