@@ -1,0 +1,7 @@
+7->Introduction to Structured Programming->Introduction to Software Engineering->Discrete Mathematics
+1->Calculus and Analytical Geometry->Sociology->Introduction to Structured Programming
+2->Probability and Statistics->Discrete Mathematics->null
+3->Calculus and Analytical Geometry->Sociology->Introduction to Structured Programming
+4->Probability and Statistics->Introduction to Software Engineering->null
+5->null->null->null
+6->null->null->null
