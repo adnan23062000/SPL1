@@ -9,7 +9,7 @@ public class File_Operations {
 
     public static ArrayList<Arraylist_Data> list = new ArrayList<>();
 
-    public void File_Subjects()throws FileNotFoundException
+    public void File_Subjects() throws FileNotFoundException
     {
         File file = new File("src\\data.txt");
         Scanner scanner = new Scanner(file);

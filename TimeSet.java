@@ -6,6 +6,9 @@ public class TimeSet {
 
     public double TimePeriod(int n, double cg) throws FileNotFoundException {
 
+        File_Operations ob = new File_Operations();
+        ob.File_Subjects();
+
         LinearRegression obj = new LinearRegression();
 
         if(n==2)

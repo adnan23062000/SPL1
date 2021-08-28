@@ -112,6 +112,8 @@ public class LinearRegression {
         }
 
         meanY = sumY/y.size();
+        //System.out.println(meanX);
+        //System.out.println(meanY);
 
     }
 
@@ -126,6 +128,12 @@ public class LinearRegression {
 
     public void AlphaBetaCalc()
     {
+        /*System.out.println("sumXY: " + sumXY);
+        System.out.println("sumXS: " + sumXS);
+        System.out.println("sumX: " + sumX);
+        System.out.println("sumY: " + sumY);
+        System.out.println("x size: " + x.size());*/
+
         double b1, b2;
         b1 = sumXY - ((sumX*sumY)/(x.size()));
         b2 = sumXS - ((Math.pow(sumX, 2))/(x.size()));

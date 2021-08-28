@@ -40,10 +40,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main extends Application {
 
@@ -67,7 +64,13 @@ public class Main extends Application {
         button1.setTranslateX(600);
         button1.setTranslateY(350);
         button1.setPrefSize(100, 60);
-        button1.setOnAction(e -> PageTwo());
+        button1.setOnAction(e -> {
+            try {
+                PageTwo();
+            } catch (ParseException | FileNotFoundException parseException) {
+                parseException.printStackTrace();
+            }
+        });
 
         Button exitBtn = new Button("Exit");
         exitBtn.setTranslateX(600);
@@ -98,20 +101,21 @@ public class Main extends Application {
         window.show();
     }
 
-    public void DynamicRoutine() throws IOException, FileNotFoundException
+    public void DynamicRoutine(Map<String, Boolean> map) throws IOException, FileNotFoundException
     {
-        Image pageThree = new Image("page3bg.png");
+        Image pageThree = new Image("main_routine.png");
         Canvas c = new Canvas(1300,650);
         GraphicsContext gc = c.getGraphicsContext2D();
         gc.drawImage(pageThree,0,0);
 
 
         Button b = new Button("View Calendar");
-        b.setFont(new Font("Rockwell Extra Bold", 18));
-        b.setStyle("-fx-text-fill: black");
-        b.setStyle(" -fx-background-color: powderblue;");
-        b.setTranslateX(700);
-        b.setTranslateY(400);
+        b.setFont(new Font("Rockwell Extra Bold", 16));
+        b.setStyle("-fx-text-fill: white");
+        b.setStyle(" -fx-background-color: pink;");
+        //b.setPrefSize(150,50);
+        b.setTranslateX(805);
+        b.setTranslateY(185);
         b.setOnAction(e -> {
             try {
                 createCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
@@ -120,12 +124,97 @@ public class Main extends Application {
             }
         });
 
-
+        Button back = new Button("back");
+        back.setTranslateX(20);
+        back.setTranslateY(20);
+        back.setOnAction(e -> {
+            try {
+                PageTwo();
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            } catch (ParseException parseException) {
+                parseException.printStackTrace();
+            }
+        });
 
         Pane layout = new Pane();
-        layout.getChildren().addAll(c, b);
-        scene21 = new Scene(layout, 1300, 650);
+        layout.getChildren().addAll(c, b, back);
 
+        ArrayList<Button> buttonList = new ArrayList<Button>();
+        int yy=160;
+
+        ArrayList<Button> buttonList2 = new ArrayList<Button>();
+        int yy2=340;
+
+        for (Map.Entry<String, Boolean> entry : map.entrySet())
+        {
+            System.out.println("Key = " + entry.getKey() +
+                    ", Value = " + entry.getValue());
+
+            if(entry.getValue()==true)
+            {
+                //System.out.println("true hoise");
+                String s = entry.getKey();
+                System.out.println(s);
+                Button b2 = new Button(s);
+
+                b2.setTranslateX(180);
+                b2.setTranslateY(yy);
+                b2.setFont(new Font("Rockwell Extra Bold", 18));
+                b2.setStyle("-fx-text-fill: black");
+                b2.setStyle(" -fx-background-color: darksalmon;");
+                yy+=72;
+
+                b2.setOnAction(e -> {
+                    FeedbackSlider(map, 1.56);
+                });
+
+                buttonList.add(b2);
+            }
+        }
+
+        for (Map.Entry<String, Boolean> entry : map.entrySet())
+        {
+            /*System.out.println("Key = " + entry.getKey() +
+                    ", Value = " + entry.getValue());*/
+
+            if(entry.getValue()==false)
+            {
+                //System.out.println("true hoise");
+                String s = entry.getKey();
+                //System.out.println(s);
+                Button b2 = new Button(s);
+
+                b2.setTranslateX(850);
+                b2.setTranslateY(yy2);
+                b2.setFont(new Font("Rockwell Extra Bold", 16));
+                b2.setStyle("-fx-text-fill: black");
+                b2.setStyle(" -fx-background-color: khaki;");
+                yy2+=40;
+
+                b2.setOnAction(e -> {
+                    entry.setValue(true);
+                    try {
+                        DynamicRoutine(map);
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                });
+
+                buttonList2.add(b2);
+            }
+        }
+
+
+        buttonList.forEach(value -> {
+            layout.getChildren().add(value);
+        });
+
+        buttonList2.forEach(value -> {
+            layout.getChildren().add(value);
+        });
+
+        scene21 = new Scene(layout, 1300, 650);
         window.setScene(scene21);
     }
 
@@ -327,19 +416,40 @@ public class Main extends Application {
         window.setScene(scene17);
     }
 
-    public void PageTwo()
+    public void PageTwo() throws FileNotFoundException, ParseException
     {
         Image pageThree = new Image("abc.JPG");
         Canvas c = new Canvas(1300,650);
         GraphicsContext gc = c.getGraphicsContext2D();
         gc.drawImage(pageThree,0,0);
 
-        Dynamic1 obj = new Dynamic1();
+        /*Dynamic1 obj = new Dynamic1();
         try {
             obj.TimeDuration();
         } catch (IOException ioException) {
             ioException.printStackTrace();
+        }*/
+
+        /*Dynamic2 obj = new Dynamic2();
+        try {
+            obj.WriteTimeToFile();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
         }
+
+        try {
+            obj.ReadTimeFromFile();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }*/
+
+        /*Dynamic3 obj = new Dynamic3();
+        try {
+            obj.DailyRoutineCheck();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }*/
+
 
         Button button1 = new Button("Create An Account");
         button1.setTranslateX(665);
@@ -429,7 +539,17 @@ public class Main extends Application {
             }
         });
 
-        b2.setOnAction(e -> PageTwo());
+        b2.setOnAction(e -> {
+            try {
+                try {
+                    PageTwo();
+                } catch (FileNotFoundException fileNotFoundException) {
+                    fileNotFoundException.printStackTrace();
+                }
+            } catch (ParseException parseException) {
+                parseException.printStackTrace();
+            }
+        });
 
         if(file.length()==0)
         {
@@ -500,7 +620,13 @@ public class Main extends Application {
         button2.setTranslateX(20);
         button2.setTranslateY(20);
         button2.setPrefSize(60, 30);
-        button2.setOnAction(e -> PageTwo());
+        button2.setOnAction(e -> {
+            try {
+                PageTwo();
+            } catch (ParseException | FileNotFoundException parseException) {
+                parseException.printStackTrace();
+            }
+        });
 
         Button submit = new Button("Submit");
         submit.setTranslateX(750);
@@ -629,8 +755,16 @@ public class Main extends Application {
                     String s = pf.getText();
                     if(s.equals(finalPass))
                     {
+                        Dynamic3 objj = new Dynamic3();
+                        Map<String, Boolean> map = null;
                         try {
-                            DynamicRoutine();
+                            map = objj.DailyRoutineCheck();
+                        } catch (IOException ioException) {
+                            ioException.printStackTrace();
+                        }
+
+                        try {
+                            DynamicRoutine(map);
                         } catch (IOException ioException) {
                             ioException.printStackTrace();
                         }
@@ -708,28 +842,46 @@ public class Main extends Application {
         textICT.setTranslateX(570);
         textICT.setTranslateY(340);
 
+        /*b.setFont(new Font("Rockwell Extra Bold", 18));
+        b.setStyle("-fx-text-fill: black");
+        b.setStyle(" -fx-background-color: powderblue;");
+        b.setTranslateX(700);
+        b.setTranslateY(400);*/
+
         Button submit = new Button("Submit");
         Button markResult = new Button();
         Button markResult2 = new Button();
         Button markResult3 = new Button();
         Button markResult4 = new Button();
         markResult.setTranslateX(800);
-        markResult.setTranslateY(300);
-        markResult.setPrefSize(150, 60);
+        markResult.setTranslateY(285);
+        markResult.setStyle(" -fx-background-color: powderblue;");
+        //markResult.setStyle("-fx-text-fill: black");
+        markResult.setFont(new Font("Rockwell Extra Bold", 13));
+        markResult.setPrefSize(175, 70);
         markResult.setOnAction(e -> {
             LinearText();
         });
 
         markResult2.setTranslateX(800);
         markResult2.setTranslateY(140);
-        markResult2.setPrefSize(150, 60);
+        markResult2.setStyle(" -fx-background-color: powderblue;");
+        //markResult.setStyle("-fx-text-fill: black");
+        markResult2.setFont(new Font("Rockwell Extra Bold", 13));
+        markResult2.setPrefSize(175, 70);
         markResult2.setOnAction(e -> {
             MultiText();
         });
         markResult3.setTranslateX(850);
         markResult3.setTranslateY(420);
+        markResult3.setStyle(" -fx-background-color: powderblue;");
+        //markResult.setStyle("-fx-text-fill: black");
+        markResult3.setFont(new Font("Rockwell Extra Bold", 13));
         markResult4.setTranslateX(800);
         markResult4.setTranslateY(450);
+        markResult4.setStyle(" -fx-background-color: powderblue;");
+        //markResult.setStyle("-fx-text-fill: black");
+        markResult4.setFont(new Font("Rockwell Extra Bold", 13));
         //markResult2.setPrefSize(150, 40);
         markResult3.setPrefSize(150, 40);
         markResult4.setPrefSize(150, 40);
@@ -1064,7 +1216,13 @@ public class Main extends Application {
         button3.setTranslateX(20);
         button3.setTranslateY(20);
         button3.setPrefSize(60, 30);
-        button3.setOnAction(e -> PageTwo());
+        button3.setOnAction(e -> {
+            try {
+                PageTwo();
+            } catch (ParseException | FileNotFoundException parseException) {
+                parseException.printStackTrace();
+            }
+        });
 
         Pane layout = new Pane();
         layout.getChildren().addAll(c, button1, button2, button3);
@@ -1463,7 +1621,13 @@ public class Main extends Application {
         button2.setTranslateY(20);
         button2.setPrefSize(60, 30);
 
-        button2.setOnAction(e -> PageTwo());
+        button2.setOnAction(e -> {
+            try {
+                PageTwo();
+            } catch (ParseException | FileNotFoundException parseException) {
+                parseException.printStackTrace();
+            }
+        });
 
         Pane layout = new Pane();
         layout.getChildren().addAll(c, button2, prev, next, white, red, blue, lblue, lwhite, lred, monthB, sun, mon, tue, wed, thu, fri, sat, year);
@@ -2220,7 +2384,7 @@ public class Main extends Application {
             b.setStyle(" -fx-background-color: mediumspringgreen;");
             yy+=60;
 
-            b.setOnAction(e -> FeedbackSlider(Rsubjects, Esub, dur_day));
+            //b.setOnAction(e -> FeedbackSlider(Rsubjects, Esub, dur_day));
 
             buttonList.add(b);
 
@@ -2260,7 +2424,7 @@ public class Main extends Application {
             b2.setStyle(" -fx-background-color: mediumspringgreen;");
             yy+=60;
 
-            b2.setOnAction(e -> FeedbackSlider(Rsubjects, Esub, dur_day));
+            //b2.setOnAction(e -> FeedbackSlider(Rsubjects, Esub, dur_day));
 
             buttonList.add(b2);
         }
@@ -2485,7 +2649,7 @@ public class Main extends Application {
         window.setScene(scene11);
     }
 
-    public void FeedbackSlider(String[] Rsubjects, ArrayList<String> Esub, double dur)
+    public void FeedbackSlider(Map<String, Boolean> map, double dur)
     {
         hour=(int)dur;
         minute = (int) ( 60 * (dur-hour));
@@ -2576,14 +2740,14 @@ public class Main extends Application {
                         }));
 
         b.setOnAction(e -> {
-            try {
+
                 timeline.stop();
-                MakeRoutine(Rsubjects, Esub);
-            } catch (FileNotFoundException fileNotFoundException) {
-                fileNotFoundException.printStackTrace();
-            } catch (ParseException parseException) {
-                parseException.printStackTrace();
-            }
+                try {
+                    DynamicRoutine(map);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            
         });
 
         Button start = new Button("Start");
