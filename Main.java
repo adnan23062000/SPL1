@@ -45,7 +45,7 @@ import java.util.*;
 public class Main extends Application {
 
     Stage window;
-    Scene scene1, scene2, scene002, scene01, scene02, scene03, scene3, scene4, scene5, scene6, scene7, scene8, scene9, scene10, scene11, scene12, scene13, scene14, scene15, scene16, scene17, scene18, scene19, scene20, scene21;
+    Scene scene1, scene2, scene002, scene01, scene02, scene03, scene3, scene4, scene5, scene6, scene7, scene8, scene9, scene10, scene11, scene12, scene13, scene14, scene15, scene16, scene17, scene18, scene19, scene20, scene21, scene22;
     String start, end, prefTime;
     int second=0, minute, hour;
     int timeup=0;
@@ -155,7 +155,7 @@ public class Main extends Application {
             {
                 //System.out.println("true hoise");
                 String s = entry.getKey();
-                System.out.println(s);
+                //System.out.println(s);
                 Button b2 = new Button(s);
 
                 b2.setTranslateX(180);
@@ -165,8 +165,14 @@ public class Main extends Application {
                 b2.setStyle(" -fx-background-color: darksalmon;");
                 yy+=72;
 
+                TimelineFixation timeObj = new TimelineFixation();
+
                 b2.setOnAction(e -> {
-                    FeedbackSlider(map, 1.56);
+                    try {
+                        FeedbackSlider(map, timeObj.TimeGetter(entry.getKey()), entry.getKey());
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
                 });
 
                 buttonList.add(b2);
@@ -217,6 +223,81 @@ public class Main extends Application {
         scene21 = new Scene(layout, 1300, 650);
         window.setScene(scene21);
     }
+
+
+    public void RoutineCreatedPage()
+    {
+        Image pageThree = new Image("pic4.JPG");
+        Canvas c = new Canvas(1300,650);
+        GraphicsContext gc = c.getGraphicsContext2D();
+        gc.drawImage(pageThree,0,0);
+
+        Dynamic2 obj = new Dynamic2();
+        try {
+            obj.WriteTimeToFile();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
+        Label l = new Label("Routine Created!!!");
+        l.setTranslateX(510);
+        l.setTranslateY(300);
+        l.setFont(new Font("Algerian", 50));
+        l.setMinWidth(100);
+        l.setMinHeight(60);
+
+        Button b1 = new Button("View Routine");
+        Button b2 = new Button("Go To Homepage");
+        b1.setTranslateX(650);
+        b1.setTranslateY(380);
+        b1.setPrefSize(150, 50);
+        b1.setStyle("-fx-text-fill: black");
+        b1.setStyle(" -fx-background-color: palegoldenrod;");
+        b2.setTranslateX(650);
+        b2.setTranslateY(440);
+        b2.setPrefSize(150, 50);
+        b2.setStyle("-fx-text-fill: black");
+        b2.setStyle(" -fx-background-color: palegoldenrod;");
+        b1.setFont(new Font("Rockwell Extra Bold", 12));
+        b2.setFont(new Font("Rockwell Extra Bold", 12));
+
+        b2.setOnAction(e -> {
+            try {
+                PageTwo();
+            } catch (FileNotFoundException fileNotFoundException) {
+                fileNotFoundException.printStackTrace();
+            } catch (ParseException parseException) {
+                parseException.printStackTrace();
+            }
+        });
+
+        b1.setOnAction(e -> {
+            Dynamic3 objj = new Dynamic3();
+            Map<String, Boolean> map = null;
+            try {
+                map = objj.DailyRoutineCheck();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+            try {
+                DynamicRoutine(map);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
+        Pane layout = new Pane();
+        layout.getChildren().addAll(c, l, b1, b2);
+        scene22 = new Scene(layout, 1300, 650);
+
+        window.setScene(scene22);
+
+
+    }
+
 
     public void AddEvent() throws IOException
     {
@@ -699,8 +780,11 @@ public class Main extends Application {
         Button b = new Button();
         b.setTranslateX(550);
         b.setTranslateY(340);
-        b.setPrefSize(300, 80);
-        b.setStyle("-fx-font-size:30px");
+        b.setPrefSize(300, 60);
+        //b.setStyle("-fx-font-size:30px");
+        b.setFont(new Font("Rockwell Extra Bold", 18));
+        //b.setStyle("-fx-text-fill: white");
+        b.setStyle(" -fx-background-color: mediumturquoise;");
         //b.setStyle("-fx-base: black;");
 
         Button button2 = new Button("Back");
@@ -711,7 +795,7 @@ public class Main extends Application {
 
         Label l = new Label("Password: ");
         l.setTranslateX(540);
-        l.setTranslateY(425);
+        l.setTranslateY(445);
         l.setVisible(false);
 
         Label l2 = new Label("Passwords don't match");
@@ -722,12 +806,12 @@ public class Main extends Application {
 
         PasswordField pf = new PasswordField();
         pf.setTranslateX(600);
-        pf.setTranslateY(420);
+        pf.setTranslateY(440);
         pf.setVisible(false);
 
         Button submit = new Button("submit");
         submit.setTranslateX(760);
-        submit.setTranslateY(420);
+        submit.setTranslateY(440);
         submit.setVisible(false);
 
         RemainingDays obj = new RemainingDays();
@@ -797,8 +881,8 @@ public class Main extends Application {
         obj2.summationXY();
         obj2.AlphaBetaCalc();
 
-        Label label1 = new Label("Enter Study Hour:  ");
-        label1.setFont(new Font("Algerian", 18));
+        Label label1 = new Label("Enter Daily Study Hour");
+        label1.setFont(new Font("Algerian", 16));
         label1.setTranslateX(450);
         label1.setTranslateY(150);
 
@@ -917,7 +1001,7 @@ public class Main extends Application {
             markResult.setText("Multiple Regression's\n  CG estimation\n" + objj.CGCalc2(math, physics, ict));
         });
 
-        final Slider slider = new Slider(0, 24, 0);
+        final Slider slider = new Slider(0, 12, 0);
         slider.setMajorTickUnit(1);
         slider.setMinorTickCount(5);
         slider.setShowTickLabels(true);
@@ -937,7 +1021,7 @@ public class Main extends Application {
                     }
                 });
 
-        String st[] = { "120", "130", "140", "150" };
+        String st[] = { "110", "120", "130", "140", "150", "160", "170", "180", "190", "200" };
 
         ChoiceBox cbIQ = new ChoiceBox(FXCollections.observableArrayList(st));
         cbIQ.setTranslateX(700);
@@ -952,18 +1036,37 @@ public class Main extends Application {
                 // set the text for the label to the selected item
                 String x = st[new_value.intValue()];
                 int xx = Integer.parseInt(x);
+                if(xx==110){
+                    CGs[2] = 3.1;
+                    markResult3.setText("CG: 3.1");}
                 if(xx==120){
-                    CGs[2] = 3.35;
-                    markResult3.setText("CG: 3.35");}
+                    CGs[2] = 3.3;
+                    markResult3.setText("CG: 3.3");}
                 if(xx==130){
-                    CGs[2] = 3.50;
-                    markResult3.setText("CG: 3.50");}
+                    CGs[2] = 3.45;
+                    markResult3.setText("CG: 3.45");}
                 if(xx==140){
-                    CGs[2] = 3.75;
-                    markResult3.setText("CG: 3.75");}
+                    CGs[2] = 3.5;
+                    markResult3.setText("CG: 3.5");}
                 if(xx==150){
-                    CGs[2] = 4.00;
-                    markResult3.setText("CG: 4.00");}
+                    CGs[2] = 3.55;
+                    markResult3.setText("CG: 3.55");}
+                if(xx==160){
+                    CGs[2] = 3.60;
+                    markResult3.setText("CG: 3.60");}
+                if(xx==170){
+                    CGs[2] = 3.65;
+                    markResult3.setText("CG: 3.65");}
+                if(xx==180){
+                    CGs[2] = 3.80;
+                    markResult3.setText("CG: 3.80");}
+                if(xx==190){
+                    CGs[2] = 3.90;
+                    markResult3.setText("CG: 3.90");}
+                if(xx==200){
+                    CGs[2] = 3.95;
+                    markResult3.setText("CG: 3.95");}
+
             }
         });
 
@@ -977,6 +1080,13 @@ public class Main extends Application {
         studyTime.getSelectionModel().selectedIndexProperty().addListener((ov, value, new_value) -> {
             // set the text for the label to the selected item
             prefTime = ab[new_value.intValue()];
+            PreferableTime pref = new PreferableTime();
+            try {
+                pref.WritePrefTime(prefTime);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
         });
 
         Image pageThree = new Image("pic3.JPG");
@@ -1486,11 +1596,7 @@ public class Main extends Application {
 
 
         create.setOnAction(e -> {
-            try {
-                createCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
-            } catch (FileNotFoundException fileNotFoundException) {
-                fileNotFoundException.printStackTrace();
-            }
+            RoutineCreatedPage();
         });
 
         layout.getChildren().addAll(c, create, label1, label2, cbIQ, cbDate, cbYear, cbIQ2, cbDate2, cbYear2);
@@ -2649,11 +2755,13 @@ public class Main extends Application {
         window.setScene(scene11);
     }
 
-    public void FeedbackSlider(Map<String, Boolean> map, double dur)
+    public void FeedbackSlider(Map<String, Boolean> map, double dur, String course)
     {
         hour=(int)dur;
         minute = (int) ( 60 * (dur-hour));
         second = 0;
+
+        double valToReduce;
 
         Image pageThree = new Image("pic3.JPG");
         Canvas c = new Canvas(1300,650);
@@ -2669,45 +2777,77 @@ public class Main extends Application {
 
         Pane layout = new Pane();
 
-        final Slider slider = new Slider(0, 100, 0);
-        slider.setMaxWidth(200);
-        slider.setMaxHeight(100);
-        slider.setBlockIncrement(1000);
-        slider.setMajorTickUnit(20);
-        slider.setMinorTickCount(10);
-        slider.setShowTickLabels(true);
-        slider.setShowTickMarks(true);
-        slider.setTranslateX(510);
-        slider.setTranslateY(280);
-        slider.setScaleX(2);
-        slider.setScaleY(2);
+        TextField textMath = new TextField();
+        textMath.setTranslateX(460);
+        textMath.setTranslateY(300);
 
-        slider.valueProperty().addListener(
-                new ChangeListener<Number>() {
-
-                    public void changed(ObservableValue<? extends Number >
-                                                observable, Number oldValue, Number newValue)
-                    {
-                        double value = slider.getValue();
-                        value = value/100;
-                        System.out.println(value +"\n");
-                    }
-                });
-
-        Label l1 = new Label("Your Study Percentage: ");
-        l1.setTranslateX(510);
+        Button l1 = new Button("Your Study Percentage: ");
+        l1.setTranslateX(450);
         l1.setTranslateY(230);
-        l1.setScaleX(2);
-        l1.setScaleY(2);
+        l1.setFont(new Font("Rockwell Extra Bold", 16));
+        l1.setStyle("-fx-text-fill: white");
+        l1.setStyle(" -fx-background-color: pink;");
+
+
+        Button l3 = new Button("Suggested Time: ");
+        l3.setTranslateX(780);
+        l3.setTranslateY(230);
+        l3.setFont(new Font("Rockwell Extra Bold", 16));
+        l3.setStyle("-fx-text-fill: white");
+        l3.setStyle(" -fx-background-color: pink;");
+
+
+        SuggestingTime sugObj = new SuggestingTime();
+
+        Label l4 = null;
+        try {
+            l4 = new Label(sugObj.TimeSuggester(dur));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        l4.setTranslateX(820);
+        l4.setTranslateY(300);
+        l4.setScaleX(2);
+        l4.setScaleY(2);
+
+
+
+
+        Label l2 = new Label("Routine Updated!!!");
+        l2.setTranslateX(830);
+        l2.setTranslateY(375);
+        l2.setScaleX(2);
+        l2.setScaleY(2);
+        l2.setVisible(false);
 
         Button b = new Button("back");
         b.setTranslateX(20);
         b.setTranslateY(20);
 
+        Button submit = new Button("Submit");
+        submit.setTranslateX(620);
+        submit.setTranslateY(300);
+        submit.setOnAction(e -> {
+            l2.setVisible(true);
+            double val = Double.parseDouble(textMath.getText());
+            double val2 = val/100;
+            double finalVal = dur*val2;
 
-        Label timerL = new Label("Remaining Time: " + String.format("%02d",hour) + ":" + String.format("%02d", minute) + ":" + String.format("%02d", second));
-        timerL.setTranslateX(510);
-        timerL.setTranslateY(380);
+            TimelineFixation obj = new TimelineFixation();
+            try {
+                obj.MainTimeChange(course, finalVal);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+
+        });
+
+
+
+
+        Label timerL = new Label("Remaining Time\n" + "     " + String.format("%02d",hour) + ":" + String.format("%02d", minute) + ":" + String.format("%02d", second));
+        timerL.setTranslateX(680);
+        timerL.setTranslateY(450);
         timerL.setScaleX(2);
         timerL.setScaleY(2);
         Label sub = null;
@@ -2751,8 +2891,8 @@ public class Main extends Application {
         });
 
         Button start = new Button("Start");
-        start.setTranslateX(550);
-        start.setTranslateY(420);
+        start.setTranslateX(695);
+        start.setTranslateY(510);
         start.setOnAction(e->{
             if(timeup==0) {
                 start.setText("Pause");
@@ -2767,7 +2907,7 @@ public class Main extends Application {
             }
         });
 
-        layout.getChildren().addAll(c, slider, l1, b,timerL, start, routine);
+        layout.getChildren().addAll(c, l1, b,timerL, start, routine, l2, submit, textMath, l3, l4);
 
         scene13 = new Scene(layout, 1300, 650);
 

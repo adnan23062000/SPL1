@@ -7,7 +7,7 @@ public class chiSquare
     //stores acceptence of a random number generator using different seeds
     //according to Chi-Square distributions
 
-    double alpha = 0.01;
+    private double alpha = 0.01;
 
     public static boolean[] chi2s(int numClasses, int[] seeds) {
         boolean[] chi2eds = new boolean[seeds.length];
@@ -22,6 +22,8 @@ public class chiSquare
             for(int i = 0; i < classes.length; i++) {
                 classes[i] = 0;
             }
+
+
 
             //if the classes are equally distributed, then the expected value is the same for each
             //numTrials = expectedValue*numClasses

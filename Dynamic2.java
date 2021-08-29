@@ -31,7 +31,7 @@ public class Dynamic2 {
             cg = Double.parseDouble(elements[0]);
         }
 
-        System.out.println(cg);
+        //System.out.println(cg);
 
 
         for(int i=2;i<=7;i++) {
